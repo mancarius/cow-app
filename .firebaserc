@@ -1,6 +1,17 @@
 {
   "projects": {
-    "prod": "cow-app-feef0",
-    "dev": "cow-app-dev"
+    "default": "cow-app-feef0"
+  },
+  "targets": {
+    "cow-app-feef0": {
+      "hosting": {
+        "dev": [
+          "cow-app-dev"
+        ],
+        "prod": [
+          "cow-app-feef0"
+        ]
+      }
+    }
   }
 }
