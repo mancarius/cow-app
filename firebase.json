@@ -4,7 +4,7 @@
   },
   "hosting": [
     {
-      "site": "cow-app-dev",
+      "target": "cow-app-dev",
       "public": "dist",
       "ignore": [
         "firebase.json",
@@ -19,7 +19,7 @@
       ]
     },
     {
-      "site": "cow-app-feef0",
+      "target": "cow-app-feef0",
       "public": "dist",
       "ignore": [
         "firebase.json",
