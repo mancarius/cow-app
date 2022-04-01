@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "cow-app-feef0"
+    "prod": "cow-app-feef0",
+    "dev": "cow-app-dev"
   }
 }
