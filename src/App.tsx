@@ -1,11 +1,22 @@
 import "./App.css";
 
+import Home from './views/Home'
+import NotFound from './views/NotFound'
+import SearchResults from './views/SearchResults'
+import HostDetails from './views/HostDetails'
+
+import { Routes, Route } from 'react-router-dom'
+
 function App() {
   return (
-    <div className="App">
-      <h1>Hello from app</h1>
-      <p>This is test paragraph</p>
-    </div>
+    <>
+      <Routes>
+        <Route path='*' element={<NotFound />} />
+        <Route path='/' element={<Home/>} />
+        <Route path='/results' element={<SearchResults/>} />
+        <Route path='host-details/:id' element={<HostDetails/>} />
+      </Routes>
+    </>
   );
 }
 
