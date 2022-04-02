@@ -1,0 +1,73 @@
+
+.myCardBox{
+    margin-bottom: 50px;
+}
+
+.myCard {
+    border-radius: 20px !important;
+    box-shadow: rgba(0, 0, 0, 0.24) 5px 5px 8px !important;
+}
+
+.myCard_content h5{
+    font-weight: bold;
+    margin-bottom: 0;
+    font-size: 20px;
+}
+
+.myCard_content h6{
+    font-size: 14px;
+}
+
+.mc_actions{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 15px;
+    padding-right: 5px;
+    padding-bottom: 10px;
+}
+
+.mc_reviews{
+    display: flex;
+    align-items: center;
+}
+
+.mc_reviews_vote{
+    background-color: aquamarine;
+    width: 45px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    margin-right: 10px;
+
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(93, 93, 93);
+}
+
+.mc_reviews_desc{
+
+}
+
+.mc_reviews_desc h6{
+    font-size: 13px;
+    font-weight: 500;
+} 
+
+.mc_reviews_desc p{
+    font-size: 11px;
+    color: gray;
+} 
+
+.mc_actions_button button{
+    color: black;
+    background-color: rgb(255, 225, 0);
+    height: 35px;
+    width: 100px;
+    border-radius: 30px;
+}
+
+.mc_actions_button button:hover{
+    background-color: rgb(255, 225, 0);
+}
