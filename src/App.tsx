@@ -1,9 +1,9 @@
 import "./App.css";
 
-import Home from './views/Home'
-import NotFound from './views/NotFound'
-import SearchResults from './views/SearchResults'
-import HostDetails from './views/HostDetails'
+import Home from './views/Home/Home'
+import NotFound from './views/NotFound/NotFound'
+import SearchResults from './views/SearchResults/SearchResults'
+import HostDetails from './views/HostDetails/HostDetails'
 
 import { Routes, Route } from 'react-router-dom'
 
