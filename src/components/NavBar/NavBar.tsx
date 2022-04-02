@@ -14,9 +14,10 @@ import MenuItem from "@mui/material/MenuItem";
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
 
 const pages = ["About", "Contatti"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const settings = ["Account", "Dashboard"];
 
 const NavBar = () => {
+  const [auth, setAuth] = React.useState(false);
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -40,7 +41,7 @@ const NavBar = () => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar sx={{ bgcolor: "#5CC0BA" }} position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -188,6 +189,11 @@ const NavBar = () => {
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Typography textAlign="center">
+                  {auth ? "Logout" : "Login"}
+                </Typography>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>
