@@ -41,17 +41,17 @@ const NavBar = () => {
   };
 
   return (
-    <AppBar sx={{ bgcolor: "#5CC0BA" }} position="static">
+    <AppBar sx={{ bgcolor: "white" }} position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ mr: 2, display: { xs: "flex", md: "flex" } }}
-          >
-            CoWo
-          </Typography>
+          <Box
+            component="img"
+            sx={{
+              height: 84,
+            }}
+            alt="Your logo."
+            src="https://cdn.discordapp.com/attachments/957585239364993025/959751983261163530/Untitled_Artwork_92.png"
+          />
           <Box
             sx={{
               justifyContent: "flex-end",
@@ -67,7 +67,7 @@ const NavBar = () => {
               onClick={handleOpenNavMenu}
               color="inherit"
             >
-              <MenuIcon />
+              <MenuIcon sx={{ color: "black" }} />
             </IconButton>
             <Menu
               id="menu-appbar"
@@ -116,7 +116,7 @@ const NavBar = () => {
                 sx={{
                   my: 2,
                   mr: 4,
-                  color: "white",
+                  color: "black",
                   display: "block",
                   textTransform: "lowercase",
                 }}
@@ -130,7 +130,7 @@ const NavBar = () => {
           <Box sx={{ flexGrow: 0, mr: 4 }}>
             <Tooltip title="Open settings">
               <Button
-                sx={{ color: "white" }}
+                sx={{ color: "black" }}
                 variant="text"
                 endIcon={<KeyboardArrowDownRoundedIcon />}
               >
@@ -165,7 +165,7 @@ const NavBar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <PersonOutlineIcon sx={{ color: "white", fontSize: 30 }} />
+                <PersonOutlineIcon sx={{ color: "black", fontSize: 30 }} />
               </IconButton>
             </Tooltip>
             <Menu
