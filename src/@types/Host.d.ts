@@ -34,14 +34,11 @@ declare namespace Host {
   interface Space {
     type: string;
     description: string;
-    spots: {
-      total: 10;
-      free: 4;
-    };
+    spots: 10;
     rateType: RateType;
     price: number;
     currency: string;
-    optionals: string[];
+    services: string[];
     images: string[];
     host?: string;
     id: string;
@@ -51,5 +48,18 @@ declare namespace Host {
     hourly = "hourly",
     daily = "daily",
     montly = "montly",
+  }
+
+  interface Filters {
+    address: string;
+    date: {
+      start: string;
+      end: string;
+    };
+    timeSlot: {
+      start: string;
+      end: string;
+    };
+    tags: Host.Info["tags"];
   }
 }
