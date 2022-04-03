@@ -56,7 +56,7 @@ export default class HostService implements Host.Info {
   /**
    * Performs query and return a list of hosts
    * @param filters
-   * @returns 
+   * @returns
    */
   public static async findMany(filters: Host.Filters): Promise<SearchResult[]> {
     const { address, date, timeSlot: requiredTimeSlot, tags } = filters;
@@ -64,156 +64,168 @@ export default class HostService implements Host.Info {
     if (typeof address !== "string" || !address.trim().length)
       throw new TypeError("Address is not a valid string");
 
-    const hostsRef = collection(db, "hosts");
-    const spacesRef = collection(db, "spaces");
-    const bookingsRef = collection(db, "bookings");
+    try {
+      const hostsRef = collection(db, "hosts");
+      const spacesRef = collection(db, "spaces");
+      const bookingsRef = collection(db, "bookings");
 
-    const hostsQueryClauses = [where("address.city", "==", address)];
+      const hostsQueryClauses = [where("address.city", "==", address)];
 
-    tags &&
-      tags.forEach((tag) =>
-        hostsQueryClauses.push(where("tags", "array-contains", tag))
-      );
-
-    const hostsQuery = query(hostsRef, ...hostsQueryClauses);
-
-    const hostsQuerySnapshot = await getDocs(hostsQuery);
-
-    const filteredHostsRefs: DocumentReference<DocumentData>[] = [];
-
-    hostsQuerySnapshot.forEach(async (document) => {
-      const host = { ...document.data(), id: document.id } as Host.Info;
-
-      if (date) {
-        const { start: dateStart, end: dateEnd } = date;
-        const { openingDays } = host;
-        const isOpenInRequiredDates = getDaysArray(dateStart, dateEnd).every(
-          (day) => {
-            if (!requiredTimeSlot)
-              return openingDays[getWeekDayName(day, "it-IT")].length > 0;
-            else {
-              return isRequiredSlotCompatibleWithOpeningTime(
-                day,
-                requiredTimeSlot,
-                openingDays
-              );
-            }
-          }
+      tags &&
+        tags.forEach((tag) =>
+          hostsQueryClauses.push(where("tags", "array-contains", tag))
         );
 
-        isOpenInRequiredDates && filteredHostsRefs.push(document.ref);
-      } else {
-        filteredHostsRefs.push(document.ref);
-      }
-    });
+      const hostsQuery = query(hostsRef, ...hostsQueryClauses);
 
-    const spacesQueryClauses = [where("host", "in", filteredHostsRefs)];
+      const hostsQuerySnapshot = await getDocs(hostsQuery);
 
-    const spacesQuery = query(spacesRef, ...spacesQueryClauses);
+      const filteredHostsRefs: DocumentReference<DocumentData>[] = [];
 
-    const spacesQuerySnapshot = await getDocs(spacesQuery);
+      hostsQuerySnapshot.forEach(async (document) => {
+        const host = { ...document.data(), id: document.id } as Host.Info;
 
-    const availableHosts: Host.Info[] = [];
-
-    // SPACES
-    spacesQuerySnapshot.forEach(async (document) => {
-      const space = { ...document.data(), id: document.id } as Host.Space;
-      const hostRef = doc(db, space.host);
-
-      // verifico se ci sono altre prenotazioni nel periodo scelto
-      const bookingsQuery = query(
-        bookingsRef,
-        where("space", "==", document.ref),
-        where("status", "in", [
-          Booking.Status.confirmed,
-          Booking.Status.pending,
-        ]),
-        where("startDate", ">=", date.start),
-        where("endDate", "<=", date.end)
-      );
-
-      const bookingsQuerySnapshot = await getDocs(bookingsQuery);
-      const bookings: Booking.Info[] = [];
-
-      bookingsQuerySnapshot.forEach((document) => {
-        bookings.push({ ...document.data(), id: document.id } as Booking.Info);
-      });
-
-      const availableSpotsPerDay: number[] = [];
-      // per ogni giorno richiesto, verifico 1) se ci sono prenotazioni 2) se sono nella fascia oraria richiesta 3) quanti slot liberi rimangono.
-      getDaysArray(date.start, date.end).forEach((day) => {
-        const bookingsForThisDay = bookings.filter((booking) => {
-          const startDateTime = new Date(booking.startDate).getTime();
-          const endDateTime = new Date(booking.endDate).getTime();
-          const dayAsDateTime = new Date(day).getTime();
-          return startDateTime <= dayAsDateTime && endDateTime >= dayAsDateTime;
-        });
-
-        const overlappingBookings = bookingsForThisDay.filter((booking) => {
-          const { timeSlot } = booking;
-          const { start: requiredStartTime, end: requiredEndTime } =
-            requiredTimeSlot;
-          const startDateTime = StringToDateTime(day, timeSlot.start);
-          const endDateTime = StringToDateTime(day, timeSlot.end);
-          const requiredStartDateTime = StringToDateTime(
-            day,
-            requiredStartTime
+        if (date) {
+          const { start: dateStart, end: dateEnd } = date;
+          const { openingDays } = host;
+          const isOpenInRequiredDates = getDaysArray(dateStart, dateEnd).every(
+            (day) => {
+              if (!requiredTimeSlot)
+                return openingDays[getWeekDayName(day, "it-IT")].length > 0;
+              else {
+                return isRequiredSlotCompatibleWithOpeningTime(
+                  day,
+                  requiredTimeSlot,
+                  openingDays
+                );
+              }
+            }
           );
-          const requiredEndDateTime = StringToDateTime(day, requiredEndTime);
-          if (
-            requiredStartDateTime > startDateTime &&
-            requiredStartDateTime < endDateTime
-          )
-            return true;
-          if (
-            requiredStartDateTime < startDateTime &&
-            requiredEndDateTime > startDateTime
-          )
-            return true;
-          return false;
+
+          isOpenInRequiredDates && filteredHostsRefs.push(document.ref);
+        } else {
+          filteredHostsRefs.push(document.ref);
+        }
+      });
+
+      const spacesQueryClauses = [where("host", "in", filteredHostsRefs)];
+
+      const spacesQuery = query(spacesRef, ...spacesQueryClauses);
+
+      const spacesQuerySnapshot = await getDocs(spacesQuery);
+
+      const availableHosts: Host.Info[] = [];
+
+      // SPACES
+      spacesQuerySnapshot.forEach(async (document) => {
+        const space = { ...document.data(), id: document.id } as Host.Space;
+        const hostRef = doc(db, space.host);
+
+        // verifico se ci sono altre prenotazioni nel periodo scelto
+        const bookingsQuery = query(
+          bookingsRef,
+          where("space", "==", document.ref),
+          where("status", "in", [
+            Booking.Status.confirmed,
+            Booking.Status.pending,
+          ]),
+          where("startDate", ">=", date.start),
+          where("endDate", "<=", date.end)
+        );
+
+        const bookingsQuerySnapshot = await getDocs(bookingsQuery);
+        const bookings: Booking.Info[] = [];
+
+        bookingsQuerySnapshot.forEach((document) => {
+          bookings.push({
+            ...document.data(),
+            id: document.id,
+          } as Booking.Info);
         });
 
-        // conto il numero di prenotazioni che si sovrappongono e poi lo rimuovo al numero di slot totali
-        availableSpotsPerDay.push(space.spots - overlappingBookings.length);
+        const availableSpotsPerDay: number[] = [];
+        // per ogni giorno richiesto, verifico 1) se ci sono prenotazioni 2) se sono nella fascia oraria richiesta 3) quanti slot liberi rimangono.
+        getDaysArray(date.start, date.end).forEach((day) => {
+          const bookingsForThisDay = bookings.filter((booking) => {
+            const startDateTime = new Date(booking.startDate).getTime();
+            const endDateTime = new Date(booking.endDate).getTime();
+            const dayAsDateTime = new Date(day).getTime();
+            return (
+              startDateTime <= dayAsDateTime && endDateTime >= dayAsDateTime
+            );
+          });
+
+          const overlappingBookings = bookingsForThisDay.filter((booking) => {
+            const { timeSlot } = booking;
+            const { start: requiredStartTime, end: requiredEndTime } =
+              requiredTimeSlot;
+            const startDateTime = StringToDateTime(day, timeSlot.start);
+            const endDateTime = StringToDateTime(day, timeSlot.end);
+            const requiredStartDateTime = StringToDateTime(
+              day,
+              requiredStartTime
+            );
+            const requiredEndDateTime = StringToDateTime(day, requiredEndTime);
+            if (
+              requiredStartDateTime > startDateTime &&
+              requiredStartDateTime < endDateTime
+            )
+              return true;
+            if (
+              requiredStartDateTime < startDateTime &&
+              requiredEndDateTime > startDateTime
+            )
+              return true;
+            return false;
+          });
+
+          // conto il numero di prenotazioni che si sovrappongono e poi lo rimuovo al numero di slot totali
+          availableSpotsPerDay.push(space.spots - overlappingBookings.length);
+        });
+        // aggiungo host a cui appartiene lo space alla lista degli hosts disponibili
+        const anyAvailableSpots = availableSpotsPerDay.every(
+          (freeSpots) => freeSpots > 0
+        );
+
+        if (anyAvailableSpots) {
+          const hostSnaphsot = await getDoc(hostRef);
+
+          if (availableHosts.every((host) => host.id !== hostSnaphsot.id))
+            availableHosts.push({
+              ...hostSnaphsot.data(),
+              id: hostSnaphsot.id,
+            } as Host.Info);
+        }
       });
-      // aggiungo host a cui appartiene lo space alla lista degli hosts disponibili
-      const anyAvailableSpots = availableSpotsPerDay.every(
-        (freeSpots) => freeSpots > 0
-      );
 
-      if (anyAvailableSpots) {
-        const hostSnaphsot = await getDoc(hostRef);
-
-        if (availableHosts.every((host) => host.id !== hostSnaphsot.id))
-          availableHosts.push({
-            ...hostSnaphsot.data(),
-            id: hostSnaphsot.id,
-          } as Host.Info);
-      }
-    });
-
-    // returns results
-    return availableHosts;
+      // returns results
+      return availableHosts;
+    } catch (error) {
+      throw error;
+    }
   }
 
   /**
    * Return HostService instance
-   * @param id 
+   * @param id
    * @returns {HostService}
    */
   public static async findById(id: string): Promise<HostService | null> {
     try {
-      const hostsRef = collection(db, 'hosts');
+      const hostsRef = collection(db, "hosts");
       const hostRef = doc(hostsRef, id);
-      const spacesRef = collection(db, 'spaces');
+      const spacesRef = collection(db, "spaces");
       const spacesQuery = query(spacesRef, where("host", "==", hostRef));
       const hostSnapshot = await getDoc(hostRef);
       if (hostSnapshot.exists()) {
         const spacesSnapshot = await getDocs(spacesQuery);
-        const host = { ...hostSnapshot.data(), id: hostSnapshot.id } as Host.Info;
-        spacesSnapshot.forEach(space => {
+        const host = {
+          ...hostSnapshot.data(),
+          id: hostSnapshot.id,
+        } as Host.Info;
+        spacesSnapshot.forEach((space) => {
           host.spaces.push({ ...space.data(), id: space.id } as Host.Space);
-        })
+        });
         return new HostService(host);
       }
       return null;
