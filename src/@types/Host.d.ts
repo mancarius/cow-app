@@ -40,7 +40,7 @@ declare namespace Host {
     currency: string;
     services: string[];
     images: string[];
-    host?: string;
+    host: string;
     id: string;
   }
 
