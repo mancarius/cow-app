@@ -9,6 +9,19 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    "& > *": {
+      width: "25ch",
+      backgroundColor: "white",
+      border: "1px solid #A1E8E3",
+      borderRadius: "30px",
+    },
+  },
+}));
+
 function Copyright() {
   return (
     <React.Fragment>
@@ -44,6 +57,8 @@ const LANGUAGES = [
 ];
 
 export default function Footer() {
+  const classes = useStyles();
+
   return (
     <Typography
       component="footer"
@@ -149,13 +164,17 @@ export default function Footer() {
               Language
             </Typography>
             <TextField
+              className={classes.root}
               select
               size="medium"
               variant="outlined"
               SelectProps={{
                 native: true,
               }}
-              sx={{ mt: 1, width: 150 }}
+              sx={{
+                mt: 1,
+                width: "27ch",
+              }}
             >
               {LANGUAGES.map((language) => (
                 <option value={language.code} key={language.code}>
@@ -170,6 +189,9 @@ export default function Footer() {
               </Box>
               <Box component="a" href="https://instagram.com/" sx={iconStyle}>
                 <InstagramIcon sx={{ color: "black", fontSize: 30 }} />
+              </Box>
+              <Box component="a" href="https://youtube.com/" sx={iconStyle}>
+                <YouTubeIcon sx={{ color: "black", fontSize: 30 }} />
               </Box>
               <Box component="a" href="https://youtube.com/" sx={iconStyle}>
                 <YouTubeIcon sx={{ color: "black", fontSize: 30 }} />
