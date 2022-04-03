@@ -1,10 +1,13 @@
 
 .prenotationSearch{
+    width: 300px;
 }
 
 .ps_title{
     font-size: 30px;
     padding-bottom: 40px;
+    font-family: 'Raleway', sans-serif !important;
+    font-weight: 600 !important;
 }
 
 .ps_search_box p{
@@ -20,7 +23,7 @@
     display: flex;
     align-items: center;
     padding-left: 15px;
-    background-color: rgb(234, 234, 234);
+    border: 2px solid rgb(198, 198, 198);
     border-radius: 30px;
 
     margin-bottom: 30px;
@@ -31,7 +34,7 @@
     font-size: 14px;
     color: gray;
     border: none;
-    background-color: rgb(234, 234, 234);
+    
     outline: none;
     
 }

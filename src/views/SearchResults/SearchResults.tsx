@@ -5,7 +5,9 @@ import NavBar from "../../components/NavBar/NavBar";
 import PrenotationSearch from "../../components/PrenotationSearch/PrenotationSearch";
 import ResultCard from "../../components/ResultCard/ResultCard";
 
-import { Button, Grid, Stack, Typography } from "@mui/material";
+import { Box, Button, Grid, Stack, Typography } from "@mui/material";
+
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 const SearchResults: React.FC = () => {
 
@@ -13,13 +15,13 @@ const SearchResults: React.FC = () => {
     <React.Fragment>
       <NavBar />
 
-      <Grid container className="searchResultPage" px="5%">
+      <Box container className="searchResultPage" px="5%">
 
         <Stack className="directory" direction="row">
           <Button variant="text">Homepage</Button>
-          
+          <ArrowForwardIosIcon />
           <Button variant="text">Piemonte</Button>
-          
+          <ArrowForwardIosIcon />
           <Button variant="text">Ricerca</Button>
         </Stack>
 
@@ -27,21 +29,22 @@ const SearchResults: React.FC = () => {
           <Button variant="text">Visualiza su mappa</Button>
         </Stack>
 
-        <Grid item xs={3} >
-          <PrenotationSearch />
-        </Grid>
-        <Grid item xs={9} className="myCardContainer"  >
+        <Box className="sr_container">
+          <div>
+            <PrenotationSearch />
+          </div>
+          <Box className="myCardContainer">
+              <ResultCard />
+              <ResultCard />
+              <ResultCard />
+              <ResultCard />
+              <ResultCard />
+              <ResultCard />
+          </Box>
+        </Box>
           
-              <ResultCard />
-              <ResultCard />
-              <ResultCard />
-
-              <ResultCard />
-              <ResultCard />
-              <ResultCard />
-
-        </Grid>
-      </Grid>
+        
+      </Box>
     </React.Fragment>
   )
 }

@@ -1,6 +1,9 @@
 
 .myCardBox{
     margin-bottom: 50px;
+    margin-left: 20px;
+    margin-left: 20px;
+    
 }
 
 .myCard {
@@ -32,9 +35,9 @@
 }
 
 .mc_reviews_vote{
-    background-color: aquamarine;
+    border: 3px solid #5CC0BA;
     width: 45px;
-    height: 35px;
+    height: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -62,7 +65,7 @@
 
 .mc_actions_button button{
     color: black;
-    background-color: rgb(255, 225, 0);
+    background-color: #FFC533;
     height: 35px;
     width: 100px;
     border-radius: 30px;
