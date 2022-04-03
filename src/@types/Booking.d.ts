@@ -11,7 +11,7 @@ declare namespace Booking {
       start: string,
       end: string,
     },
-    guestNames: string[]
+    spotsNumber: number,
     id: string,
   }
 
