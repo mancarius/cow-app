@@ -34,20 +34,20 @@ const iconStyle = {
 
 const LANGUAGES = [
   {
-    code: "en-US",
-    name: "English",
+    code: "it-IT",
+    name: "Italiano",
   },
   {
-    code: "fr-FR",
-    name: "Français",
+    code: "en-US",
+    name: "English",
   },
 ];
 
 export default function Footer() {
   return (
-    <Typography component="footer" sx={{ display: "flex", bgcolor: "#5CC0BA" }}>
+    <Typography component="footer" sx={{ display: "flex", bgcolor: "#A1E8E3" }}>
       <Container sx={{ my: 8, display: "flex" }}>
-        <Grid container spacing={5}>
+        <Grid container spacing={5} justifyContent="space-between">
           <Grid item xs={6} sm={4} md={3}>
             <Grid
               container
@@ -60,7 +60,7 @@ export default function Footer() {
                 <Box
                   component="img"
                   sx={{
-                    height: 84,
+                    width: 120,
                   }}
                   alt="Your logo."
                   src="https://cdn.discordapp.com/attachments/957585239364993025/959751983261163530/Untitled_Artwork_92.png"
@@ -144,7 +144,7 @@ export default function Footer() {
             <TextField
               select
               size="medium"
-              variant="standard"
+              variant="outlined"
               SelectProps={{
                 native: true,
               }}
@@ -156,6 +156,7 @@ export default function Footer() {
                 </option>
               ))}
             </TextField>
+
             <Grid item sx={{ display: "flex" }}>
               <Box component="a" href="https://facebook.com/" sx={iconStyle}>
                 <FacebookIcon sx={{ color: "black", fontSize: 30 }} />
