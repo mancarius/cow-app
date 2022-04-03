@@ -15,7 +15,7 @@ const SearchResults: React.FC = () => {
     <React.Fragment>
       <NavBar />
 
-      <Box container className="searchResultPage" px="5%">
+      <Box className="searchResultPage">
 
         <Stack className="directory" direction="row">
           <Button variant="text">Homepage</Button>
@@ -30,7 +30,7 @@ const SearchResults: React.FC = () => {
         </Stack>
 
         <Box className="sr_container">
-          <div>
+          <div className="ps_container">
             <PrenotationSearch />
           </div>
           <Box className="myCardContainer">

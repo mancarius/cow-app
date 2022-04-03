@@ -6,7 +6,8 @@
 }
 
 .searchResultPage{
-    
+    padding-left: 5%;
+    padding-right: 5%;
 }
 
 .directory{
@@ -55,4 +56,25 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+}
+
+
+@media only screen and (max-width: 821px) {
+    .directory{
+        display: none !important;
+    }
+    .ps_container{
+        display: none;
+    }
+
+    .myCardContainer{
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .myCardBox{
+        margin-left: 0 !important;
+        margin-bottom: 20px !important;
+    }
 }

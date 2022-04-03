@@ -1,7 +1,7 @@
 
 .myCardBox{
+    width: 316px;
     margin-bottom: 50px;
-    margin-left: 20px;
     margin-left: 20px;
     
 }
@@ -11,6 +11,14 @@
     box-shadow: rgba(0, 0, 0, 0.24) 5px 5px 8px !important;
 }
 
+.myCardMedia{
+    height: 220px;
+}
+
+.myCard_content{
+    padding-bottom: 15px !important;
+}
+
 .myCard_content h5{
     font-weight: bold;
     margin-bottom: 0;
@@ -18,7 +26,7 @@
 }
 
 .myCard_content h6{
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .mc_actions{
@@ -73,4 +81,38 @@
 
 .mc_actions_button button:hover{
     background-color: rgb(255, 225, 0);
+}
+
+@media only screen and (min-width: 560px) and (max-width: 821px) {
+
+    .myCardBox{
+        width: 100%;
+        margin-left: 0;
+        margin-bottom: 20px;
+    }
+
+    .myCard{
+        display: flex;
+        width: 100%;
+        height: 180px;
+    }
+    .myCardMedia{
+        width: 40% !important;
+    }
+
+    .myCardBox_content{
+        width: 60%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .myCard_content{
+        margin-left: 10px;
+        margin-top: 15px;
+    }
+
+    .mc_actions{
+        margin-left: 10px;
+        margin-right: 10px;
+    }
 }

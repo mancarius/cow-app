@@ -4,7 +4,7 @@
 }
 
 .ps_title{
-    font-size: 30px;
+    font-size: 32px !important;
     padding-bottom: 40px;
     font-family: 'Raleway', sans-serif !important;
     font-weight: 600 !important;
@@ -12,13 +12,13 @@
 
 .ps_search_box p{
     font-weight: bold;
-    font-size: 16px;
+    font-size: 16px !important;
     padding-left: 10px;
     padding-bottom: 5px;
 }
 
 .ps_search_box span{
-    width: 220px;
+    width: 210px;
     height: 45px;
     display: flex;
     align-items: center;
@@ -30,7 +30,7 @@
 }
 
 .ps_search_box input{
-    width: 200px;
+    width: 180px;
     font-size: 14px;
     color: gray;
     border: none;
