@@ -5,7 +5,7 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import GlobalStyles from "@mui/material/GlobalStyles";
 import Container from "@mui/material/Container";
-import SpaceCard from "../SpaceCard/SpaceCard";
+import ResultCard from "../ResultCard/ResultCard";
 
 const features = [
   {
@@ -76,7 +76,7 @@ function CarouselContent() {
                 alignItems: "center",
               }}
             >
-              <SpaceCard />
+              <ResultCard />
             </Grid>
           ))}
         </Grid>
