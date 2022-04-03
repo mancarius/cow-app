@@ -4,6 +4,7 @@ import './SearchResults.css';
 import NavBar from "../../components/NavBar/NavBar";
 import PrenotationSearch from "../../components/PrenotationSearch/PrenotationSearch";
 import ResultCard from "../../components/ResultCard/ResultCard";
+import Footer from "../../components/Footer/Footer";
 
 import { Box, Button, Grid, Stack, Typography } from "@mui/material";
 
@@ -45,6 +46,8 @@ const SearchResults: React.FC = () => {
           
         
       </Box>
+      <Footer></Footer>
+
     </React.Fragment>
   )
 }
