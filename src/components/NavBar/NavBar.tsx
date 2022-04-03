@@ -41,8 +41,17 @@ const NavBar = () => {
   };
 
   return (
-    <AppBar sx={{ bgcolor: "white" }} position="static">
-      <Container maxWidth="xl">
+    <AppBar elevation={0} sx={{ backgroundColor: "white" }} position="fixed">
+      <Container
+        maxWidth="xl"
+        sx={{
+          m: "20px",
+          bgcolor: "#9BE3DE",
+          borderRadius: "30px",
+          alignSelf: "center",
+          width: "97%",
+        }}
+      >
         <Toolbar disableGutters>
           <Box
             component="img"

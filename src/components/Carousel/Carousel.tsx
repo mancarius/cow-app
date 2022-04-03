@@ -7,6 +7,8 @@ import GlobalStyles from "@mui/material/GlobalStyles";
 import Container from "@mui/material/Container";
 import ResultCard from "../ResultCard/ResultCard";
 
+// Space Card changed with Result Card
+
 const features = [
   {
     description: [

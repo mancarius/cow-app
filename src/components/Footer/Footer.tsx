@@ -45,7 +45,14 @@ const LANGUAGES = [
 
 export default function Footer() {
   return (
-    <Typography component="footer" sx={{ display: "flex", bgcolor: "#A1E8E3" }}>
+    <Typography
+      component="footer"
+      sx={{
+        display: "flex",
+        bgcolor: "#A1E8E3",
+        borderRadius: "30px 30px 0px 0px",
+      }}
+    >
       <Container sx={{ my: 8, display: "flex" }}>
         <Grid container spacing={5} justifyContent="space-between">
           <Grid item xs={6} sm={4} md={3}>
