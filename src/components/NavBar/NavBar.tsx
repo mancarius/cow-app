@@ -41,7 +41,8 @@ const NavBar = () => {
   };
 
   return (
-    <AppBar elevation={0} sx={{ backgroundColor: "white" }} position="fixed">
+    /* Problems position fixed with search result */
+    <AppBar elevation={0} sx={{ backgroundColor: "white" }} position="static">
       <Container
         maxWidth="xl"
         sx={{
@@ -52,7 +53,7 @@ const NavBar = () => {
           width: "97%",
         }}
       >
-        <Toolbar disableGutters>
+        <Toolbar>
           <Box
             component="img"
             sx={{

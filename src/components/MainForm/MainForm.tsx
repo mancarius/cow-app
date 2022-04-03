@@ -26,7 +26,7 @@ export default function SignUp() {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        bgcolor: "#E5E5E5",
+        bgcolor: "#F1EFEF",
         borderRadius: "15px",
       }}
     >
@@ -47,10 +47,7 @@ export default function SignUp() {
                 borderRadius: "25px",
               }}
             >
-              <SearchIcon
-                sx={{ p: "10px", color: "#E5E5E5" }}
-                aria-label="menu"
-              />
+              <SearchIcon sx={{ fontSize: 50, p: "10px", color: "#E5E5E5" }} />
 
               <InputBase
                 sx={{ ml: 1, flex: 1 }}
@@ -74,7 +71,7 @@ export default function SignUp() {
               }}
             >
               <CalendarTodayIcon
-                sx={{ p: "10px", color: "#E5E5E5" }}
+                sx={{ fontSize: 40, p: "10px", color: "#E5E5E5" }}
                 aria-label="menu"
               />
 
@@ -97,14 +94,11 @@ export default function SignUp() {
               }}
             >
               <AccessTimeIcon
-                sx={{ p: "10px", color: "#E5E5E5" }}
+                sx={{ fontSize: 40, p: "10px", color: "#E5E5E5" }}
                 aria-label="menu"
               />
 
-              <InputBase
-                sx={{ ml: 1, flex: 1 }}
-                placeholder="es. 15:30 - 16:30"
-              />
+              <InputBase sx={{ ml: 1, flex: 1 }} placeholder="15:30 - 16:30" />
             </Paper>
           </Grid>
         </Grid>
@@ -129,7 +123,7 @@ export default function SignUp() {
               borderColor: "#ffc533e4",
             },
             "&:focus": {
-              boxShadow: "0 0 0 0.2rem rgba(0,123,255,.5)",
+              boxShadow: "0 0 0 0.2rem rgb(255, 197, 51)",
             },
           }}
         >
