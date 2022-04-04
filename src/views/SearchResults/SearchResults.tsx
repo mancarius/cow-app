@@ -13,8 +13,14 @@ const SearchResults: React.FC = () => {
   return (
     <React.Fragment>
       <NavBar />
-      
-        <Box className="searchResultPage">
+
+      <Box className="searchResultPage">
+        <Container
+          maxWidth="xl"
+          sx={{
+            alignSelf: "center",
+          }}
+        >
           <Stack className="directory" direction="row">
             <Button variant="text">Homepage</Button>
             <ArrowForwardIosIcon />
@@ -40,8 +46,9 @@ const SearchResults: React.FC = () => {
               <ResultCard />
             </Box>
           </Box>
-        </Box>
-      
+        </Container>
+      </Box>
+
       <Footer></Footer>
     </React.Fragment>
   );
