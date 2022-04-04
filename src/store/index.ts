@@ -1,10 +1,24 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore, combineReducers } from '@reduxjs/toolkit'
 
-export const store = configureStore({
-  reducer: {},
+import { hostsSlice } from './features/host/hostSlice'
+import { authSlice } from './features/customer/authSlice'
+//import { languageSlice } from './features/language/languageSlice'
+//import { bookingSlice } from './features/customer/bookingSlice'
+
+
+const rootReducer = combineReducers({
+  auth: authSlice.reducer,
+  hosts: hostsSlice.reducer,
+  //booking: bookingSlice.reducer,
+  //language: languageSlice,
 })
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
-export type RootState = ReturnType<typeof store.getState>
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+export const store = configureStore({
+  reducer: {
+    reducer: rootReducer,
+  },
+})
+
+
+export type RootState = ReturnType<typeof rootReducer>
 export type AppDispatch = typeof store.dispatch
