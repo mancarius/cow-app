@@ -7,25 +7,26 @@
     padding-top: 40px;
     padding-bottom: 40px;
 
-    border: 1px solid blue;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 3px 3px 8px;
+    margin-bottom: 20px;
 }
 
 .HostOrder_container{
     display: flex;
     justify-content: space-between;
     width: 90%;
-    border: 1px solid red;
 }
 
 .HostOrder_desc_box{
     display: flex;
     justify-content: flex-start;
     width: 60%;
-    border: 1px solid green;
 }
 
 .HostOrder_desc_box img{
     width: 230px ;
+    max-height: 155px;
     border-radius: 20px;
     margin-right: 10%;
 }
@@ -43,6 +44,7 @@
 .HostOrder_desc span{
     display: flex;
     align-items: center;
+    margin-bottom: 4px;
 }
 
 .HostOrder_desc span svg{
@@ -58,20 +60,17 @@
 
 
 
-
-
 .HostOrder_info_box{
     width: 40%;
-    border: 1px solid yellow;
     display: flex;
     justify-content: center;
 }
 
-.HostOrder_info div{
+.HostOrder_info_div{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 200px;
-    border: 1px solid red;
 }
 
 .HostOrder_info{
@@ -79,7 +78,33 @@
 }
 
 .HostOrder_info span{
-    border: 1px solid green;
     width: 60px;
     text-align: center;
+}
+
+.quantity_span{
+    border: 2px solid rgb(179, 179, 179);
+    border-radius: 30px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.quantity{
+    width: 40px;
+    height: 30px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.separator{
+    height: 1px;
+    width: 90%;
+    border: none;
+    background-color: lightgray;
+    margin-top: 25px;
+    margin-bottom: 25px;
 }

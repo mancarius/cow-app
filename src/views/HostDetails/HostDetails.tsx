@@ -29,4 +29,4 @@ const HostDetails: React.FC = () => {
   )
 }
 
-export default HostDetails
+export default HostDetails;
