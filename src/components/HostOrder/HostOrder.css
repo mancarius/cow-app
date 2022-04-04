@@ -1,0 +1,20 @@
+
+.HostOrder{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 75%;
+
+    border: 1px solid blue;
+}
+
+.tavolo_condiviso{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    border: 1px solid red;
+}
+
+.tavolo_condiviso img{
+    width: 200px ;
+}
