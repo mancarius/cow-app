@@ -4,17 +4,82 @@
     flex-direction: column;
     align-items: center;
     width: 75%;
+    padding-top: 40px;
+    padding-bottom: 40px;
 
     border: 1px solid blue;
 }
 
-.tavolo_condiviso{
+.HostOrder_container{
     display: flex;
     justify-content: space-between;
     width: 90%;
     border: 1px solid red;
 }
 
-.tavolo_condiviso img{
-    width: 200px ;
+.HostOrder_desc_box{
+    display: flex;
+    justify-content: flex-start;
+    width: 60%;
+    border: 1px solid green;
+}
+
+.HostOrder_desc_box img{
+    width: 230px ;
+    border-radius: 20px;
+    margin-right: 10%;
+}
+
+.HostOrder_desc{
+}
+
+.HostOrder_desc h5{
+    margin-bottom: 15px;
+    font-family: "Raleway", sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.HostOrder_desc span{
+    display: flex;
+    align-items: center;
+}
+
+.HostOrder_desc span svg{
+    color: #5CC0BA;
+    width: 18px !important;
+    height: 18px !important;
+}
+
+.HostOrder_desc span p{
+    margin-left: 5px;
+    font-size: 14px;
+}
+
+
+
+
+
+.HostOrder_info_box{
+    width: 40%;
+    border: 1px solid yellow;
+    display: flex;
+    justify-content: center;
+}
+
+.HostOrder_info div{
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+    border: 1px solid red;
+}
+
+.HostOrder_info{
+    justify-content: space-around;
+}
+
+.HostOrder_info span{
+    border: 1px solid green;
+    width: 60px;
+    text-align: center;
 }
