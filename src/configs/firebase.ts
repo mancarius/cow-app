@@ -1,22 +1,16 @@
 // Import the functions you need from the SDKs you need
-import {
-  initializeApp
-} from "firebase/app";
-import {
-  getAnalytics,
-  logEvent
-} from "firebase/analytics";
+import { initializeApp } from "firebase/app";
+import { getAnalytics, logEvent } from "firebase/analytics";
 import {
   GoogleAuthProvider,
   FacebookAuthProvider,
   getAuth,
   signInWithPopup,
   signOut,
+  setPersistence,
+  browserLocalPersistence,
 } from "firebase/auth";
-import {
-  getFirestore,
-} from "firebase/firestore";
-
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_APP_FIREBASE_API_KEY,
@@ -33,24 +27,22 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 const analytics = getAnalytics(app);
-logEvent(analytics, 'notification_received');
+logEvent(analytics, "notification_received");
 
-
-const googleProvider = new GoogleAuthProvider();
-const facebookProvider = new FacebookAuthProvider();
-const signInWithGoogle = () => signInWithPopup(auth, googleProvider);
-const signInWithFacebook = () => signInWithPopup(auth, facebookProvider);
-
+const initAuth = async () => {
+  await setPersistence(auth, browserLocalPersistence);
+  const googleProvider = new GoogleAuthProvider();
+  const facebookProvider = new FacebookAuthProvider();
+  return [
+    () => signInWithPopup(auth, googleProvider),
+    () => signInWithPopup(auth, facebookProvider),
+  ];
+};
 
 const logout = () => {
   signOut(auth);
 };
 
+const [signInWithGoogle, signInWithFacebook] = await initAuth();
 
-export {
-  auth,
-  db,
-  signInWithGoogle,
-  signInWithFacebook,
-  logout,
-};
+export { auth, db, signInWithGoogle, signInWithFacebook, logout };
