@@ -65,7 +65,7 @@ export default class HostService implements Host.Info {
       throw new TypeError("Address is not a valid string");
 
     try {
-      const hostsRef = collection(db, "hosts");
+      const hostsRef = collection(db, "host");
       const spacesRef = collection(db, "spaces");
       const bookingsRef = collection(db, "bookings");
 
