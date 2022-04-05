@@ -6,7 +6,7 @@ interface initialState {
 }
 
 const initialState: initialState = {
-  language: 'it',
+  language: 'en',
   status: 'idle'
 }
 

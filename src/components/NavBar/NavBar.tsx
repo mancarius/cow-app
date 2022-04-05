@@ -11,7 +11,7 @@ import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
+//import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
 import { Avatar } from "@mui/material";
 import { useSelector } from 'react-redux'
 import { RootState } from "../../store";
@@ -154,7 +154,7 @@ const NavBar = () => {
           </Box>
 
           {/* Language */}
-          <Box sx={{ flexGrow: 0, mr: 4 }}>
+          {/* <Box sx={{ flexGrow: 0, mr: 4 }}>
             <Tooltip title="Open settings">
               <Button
                 sx={{ color: "black" }}
@@ -186,7 +186,7 @@ const NavBar = () => {
                 </MenuItem>
               ))}
             </Menu>
-          </Box>
+          </Box> */}
 
           {/* Account */}
           <Box sx={{ flexGrow: 0 }}>

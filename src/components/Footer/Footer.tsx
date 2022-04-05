@@ -4,7 +4,7 @@ import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
-import TextField from "@mui/material/TextField";
+//import TextField from "@mui/material/TextField";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import YouTubeIcon from "@mui/icons-material/YouTube";
@@ -45,16 +45,16 @@ const iconStyle = {
   mt: 2,
 };
 
-const LANGUAGES = [
-  {
-    code: "it-IT",
-    name: "Italiano",
-  },
-  {
-    code: "en-US",
-    name: "English",
-  },
-];
+// const LANGUAGES = [
+//   {
+//     code: "it-IT",
+//     name: "Italiano",
+//   },
+//   {
+//     code: "en-US",
+//     name: "English",
+//   },
+// ];
 
 export default function Footer() {
   const classes = useStyles();
@@ -68,7 +68,7 @@ export default function Footer() {
         borderRadius: "30px 30px 0px 0px",
       }}
     >
-      <Container sx={{ my: 8, display: "flex" }}>
+      <Container sx={{ my: 8, mb: 0, display: "flex" }} disableGutters={true}>
         <Grid container spacing={5} justifyContent="space-between">
           <Grid item xs={6} sm={4} md={3}>
             <Grid
@@ -112,7 +112,7 @@ export default function Footer() {
               </Box>
             </Box>
           </Grid>
-          <Grid item xs={6} sm={4} md={2}>
+          <Grid item xs={6} sm={4} md={2} sx={{ display: { xs: 'none', sm: 'block' } }}>
             <Typography
               sx={{ color: "black" }}
               variant="h6"
@@ -124,46 +124,31 @@ export default function Footer() {
             <Box component="ul" sx={{ m: 0, listStyle: "none", p: 0 }}>
               <Box component="li" sx={{ py: 0.5 }}>
                 <Link sx={{ color: "black" }} href="https://mui.com/">
-                  Link1
+                  FAQ
                 </Link>
               </Box>
               <Box component="li" sx={{ py: 0.5 }}>
                 <Link sx={{ color: "black" }} href="https://mui.com/">
-                  Link2
+                  Support
                 </Link>
               </Box>
               <Box component="li" sx={{ py: 0.5 }}>
                 <Link sx={{ color: "black" }} href="https://mui.com/">
-                  Link3
-                </Link>
-              </Box>
-              <Box component="li" sx={{ py: 0.5 }}>
-                <Link sx={{ color: "black" }} href="https://mui.com/">
-                  Link4
-                </Link>
-              </Box>
-              <Box component="li" sx={{ py: 0.5 }}>
-                <Link sx={{ color: "black" }} href="https://mui.com/">
-                  Link5
-                </Link>
-              </Box>
-              <Box component="li" sx={{ py: 0.5 }}>
-                <Link sx={{ color: "black" }} href="https://mui.com/">
-                  Link6
+                  About
                 </Link>
               </Box>
             </Box>
           </Grid>
-          <Grid item xs={6} sm={8} md={4}>
+          <Grid item xs={12} sm={12} md={4} sx={{ marginX: { xs: 12, sm: 0 } }}>
             <Typography
               sx={{ color: "black" }}
               variant="h6"
               gutterBottom
               component="div"
             >
-              Language
+              Social
             </Typography>
-            <TextField
+            {/* <TextField
               className={classes.root}
               select
               size="medium"
@@ -181,7 +166,7 @@ export default function Footer() {
                   {language.name}
                 </option>
               ))}
-            </TextField>
+            </TextField> */}
 
             <Grid item sx={{ display: "flex" }}>
               <Box component="a" href="https://facebook.com/" sx={iconStyle}>
@@ -193,45 +178,53 @@ export default function Footer() {
               <Box component="a" href="https://youtube.com/" sx={iconStyle}>
                 <YouTubeIcon sx={{ color: "black", fontSize: 30 }} />
               </Box>
-              <Box component="a" href="https://youtube.com/" sx={iconStyle}>
-                <YouTubeIcon sx={{ color: "black", fontSize: 30 }} />
-              </Box>
             </Grid>
           </Grid>
 
-          <Grid item>
-            <Typography variant="caption" sx={{ color: "black" }}>
-              {"Logo made by "}
-              <Link
-                href="https://www.freepik.com"
-                rel="sponsored"
-                title="iPee(rs)"
-                sx={{ color: "black" }}
-              >
-                iPee(rs)
-              </Link>
-              {" from "}
-              <Link
-                href="https://www.flaticon.com"
-                rel="sponsored"
-                title="iPee(rs)"
-                sx={{ color: "black" }}
-              >
-                www.ipeers.com
-              </Link>
-              {" is licensed by "}
-              <Link
-                href="https://mui.com/"
-                title="MUI"
-                target="_blank"
-                rel="noopener noreferrer"
-                sx={{ color: "black" }}
-              >
-                NOONECARES
-              </Link>
-            </Typography>
+          <Grid xs={12} item sx={{ bgcolor: "#5CC0BA", mt: 10 }}>
+            <Box 
+              display="flex" 
+              alignItems="center"
+              justifyContent="center"
+            >
+              <Typography variant="caption" sx={{ color: "black"}}>
+                {"Logo made by "}
+                <Link
+                  href="https://www.freepik.com"
+                  rel="sponsored"
+                  title="iPee(rs)"
+                  sx={{ color: "black" }}
+                >
+                  iPee(rs)
+                </Link>
+                {" from "}
+                <Link
+                  href="https://www.flaticon.com"
+                  rel="sponsored"
+                  title="iPee(rs)"
+                  sx={{ color: "black" }}
+                >
+                  www.ipeers.com
+                </Link>
+                {" is licensed by "}
+                <Link
+                  href="https://mui.com/"
+                  title="MUI"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  sx={{ color: "black" }}
+                >
+                  NOONECARES
+                </Link>
+              </Typography>
+            </Box>
+       
           </Grid>
+        
+            
         </Grid>
+
+        
       </Container>
     </Typography>
   );
