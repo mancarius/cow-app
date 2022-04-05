@@ -1,12 +1,12 @@
 import {
   collection,
   DocumentData,
-  getDocs,
   query,
   where,
   doc,
   DocumentReference,
   getDoc,
+  getDocs,
 } from "firebase/firestore";
 import { Booking } from "../@types/Booking.d";
 import { Host } from "../@types/Host.d";
@@ -212,7 +212,7 @@ export default class HostService implements Host.Info {
    */
   public static async findById(id: string): Promise<HostService | null> {
     try {
-      const hostsRef = collection(db, "hosts");
+      const hostsRef = collection(db, "host");
       const hostRef = doc(hostsRef, id);
       const spacesRef = collection(db, "spaces");
       const spacesQuery = query(spacesRef, where("host", "==", hostRef));
@@ -229,6 +229,29 @@ export default class HostService implements Host.Info {
         return new HostService(host);
       }
       return null;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+
+  /**
+   * 
+   * @returns a list of tags
+   */
+  public static async getAllTags() {
+    try {
+      const hostsRef = collection(db, "host");
+      const q = query(hostsRef, where("tags", "!=", []));
+      const querySnapshot = await getDocs(q);
+      let tags: Host.Info['tags'] = [];
+
+      querySnapshot.forEach(snap => {
+        const host = snap.data() as Host.Info;
+        tags = [...tags, ...host.tags];
+      });
+
+      return [...new Set(tags)];
     } catch (error) {
       throw error;
     }
