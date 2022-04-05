@@ -8,8 +8,8 @@ import {
   DocumentReference,
   getDoc,
 } from "firebase/firestore";
-import { Booking } from "../@types/Booking";
-import { Host } from "../@types/Host";
+import { Booking } from "../@types/Booking.d";
+import { Host } from "../@types/Host.d";
 import { db } from "../configs/firebase";
 import {
   getDaysArray,
@@ -17,8 +17,6 @@ import {
   isRequiredSlotCompatibleWithOpeningTime,
   StringToDateTime,
 } from "../utils/date-utils";
-
-interface SearchResult extends Omit<Host.Info, "spaces"> {}
 
 export default class HostService implements Host.Info {
   public readonly name: string;
@@ -58,7 +56,9 @@ export default class HostService implements Host.Info {
    * @param filters
    * @returns
    */
-  public static async findMany(filters: Host.Filters): Promise<SearchResult[]> {
+  public static async findMany(
+    filters: Host.Filters
+  ): Promise<Host.SearchResult[]> {
     const { address, date, timeSlot: requiredTimeSlot, tags } = filters;
 
     if (typeof address !== "string" || !address.trim().length)
