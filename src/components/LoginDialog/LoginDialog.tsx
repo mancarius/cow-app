@@ -18,29 +18,35 @@ import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import IconButton from "@mui/material/IconButton";
 import SvgIcon from "@material-ui/core/SvgIcon";
+import { RootState, useAppDispatch } from '../../store'
+import { AuthProvider } from "../../@types/AuthProvider.d";
+import { customerLogin, dismissAuth } from "../../store/features/customer/slice";
+import { useSelector } from "react-redux";
 
-export default function SignIp() {
+export default function SignIn() {
   // Dialog
-  const [open, setOpen] = React.useState(true);
+  const { requireAuth: open } = useSelector((state:RootState) => state.customer);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  const dispatch = useAppDispatch();
 
   const handleClose = () => {
-    setOpen(false);
+    dispatch(dismissAuth());
   };
+
+  const signInWith = async (provider: AuthProvider) => {
+    const resultAction = await dispatch(customerLogin(provider));
+    if (customerLogin.fulfilled.match(resultAction)) {
+      handleClose()
+    } else {
+      alert("Sign In failed");
+    }
+  }
 
   // Form
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
   };
 
   return (
@@ -191,6 +197,7 @@ export default function SignIp() {
               fullWidth
               variant="contained"
               size="large"
+              onClick={() => signInWith(AuthProvider.google)}
               startIcon={
                 <SvgIcon>
                   <svg
@@ -250,6 +257,7 @@ export default function SignIp() {
               fullWidth
               variant="contained"
               size="large"
+              onClick={() => signInWith(AuthProvider.facebook)}
               startIcon={
                 <SvgIcon>
                   <svg

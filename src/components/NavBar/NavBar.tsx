@@ -12,24 +12,41 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
+import { Avatar } from "@mui/material";
+import { useSelector } from 'react-redux'
+import { RootState } from "../../store";
+import { useAppDispatch } from '../../store'
+import { customerLogout, requireAuth } from "../../store/features/customer/slice";
 
 const pages = ["About", "Contatti"];
 const settings = ["Account", "Dashboard"];
 
 const NavBar = () => {
-  const [auth, setAuth] = React.useState(false);
+  const dispatch = useAppDispatch();
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
+  const { info: customer } = useSelector((state: RootState) => state.customer);
+
+  const handleCustomerLogout = async () => {
+    const resultAction = await dispatch(customerLogout());
+    if (customerLogout.fulfilled.match(resultAction)) {
+      handleCloseUserMenu()
+    } else {
+      alert("Impossible to sign out");
+    }
+  }
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
+    customer
+      ? setAnchorElUser(event.currentTarget)
+      : dispatch(requireAuth());
   };
 
   const handleCloseNavMenu = () => {
@@ -173,9 +190,16 @@ const NavBar = () => {
 
           {/* Account */}
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
+            <Tooltip title={customer ? "Open settings" : "Sign In"}>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <PersonOutlineIcon sx={{ color: "black", fontSize: 30 }} />
+                {
+                  customer?.uid
+                    ? <Avatar
+                        alt={customer.displayName || undefined}
+                        src={customer.photoURL || undefined}
+                        />
+                    : <PersonOutlineIcon sx={{ color: "black", fontSize: 30 }} />
+                }
               </IconButton>
             </Tooltip>
             <Menu
@@ -192,16 +216,17 @@ const NavBar = () => {
                 horizontal: "right",
               }}
               open={Boolean(anchorElUser)}
+              onClick={handleCloseUserMenu}
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <MenuItem key={setting}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
-              <MenuItem onClick={handleCloseUserMenu}>
+              <MenuItem onClick={handleCustomerLogout}>
                 <Typography textAlign="center">
-                  {auth ? "Logout" : "Login"}
+                  {"Logout"}
                 </Typography>
               </MenuItem>
             </Menu>
