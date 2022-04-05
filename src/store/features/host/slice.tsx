@@ -1,31 +1,17 @@
 import { 
     createAsyncThunk,
     createSlice,
-    PayloadAction
 } from '@reduxjs/toolkit'
 import { Host } from '../../../@types/Host'
+import HostService from '../../../service/host.service'
 
-
-// const getHostById = createAsyncThunk(
-//     'hosts/getSingleHost',
-//     async (hostId, thunkAPI) => {
-//         return null
-//     }
-// )
-
-const findHosts = createAsyncThunk(
-    'hosts/findHosts',
-    async (filters: Host.Filters, thunkAPI): Promise<Host.Info[]> => {
-        try {
-            return []
-        } catch (error) {
-            throw error 
-        }
-    }
+export const findHosts = createAsyncThunk(
+    'hosts/find',
+    HostService.findMany
 )
 
 interface initialState {
-    hosts: Host.Info[]
+    hosts: Host.SearchResult[]
     status: 'idle' | 'loading' | 'failed'
 }
 
@@ -34,7 +20,7 @@ const initialState: initialState = {
     status: 'idle'
 } 
 
-export const hostsSlice = createSlice({
+const hostSlice = createSlice({
     name: 'hosts',
     initialState,
     reducers: {},
@@ -53,3 +39,4 @@ export const hostsSlice = createSlice({
     } 
   });
   
+export default hostSlice.reducer;

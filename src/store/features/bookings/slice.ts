@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { Booking } from '../../../@types/Booking';
 
-const initialState = {
-  booking: Booking.Status
+const initialState: {bookings: Booking.Info[]} = {
+  bookings: []
 }
 
 const bookingSlice = createSlice({
