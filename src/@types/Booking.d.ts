@@ -1,18 +1,18 @@
 import { Host } from "./Host";
 
-declare namespace Booking {
+export namespace Booking {
   interface Info {
-    status: Status,
-    host: Host.Info,
-    space: Host.Space,
-    startDate: number,
-    endDate: number,
+    status: Status;
+    host: Host.Info;
+    space: Host.Space;
+    startDate: number;
+    endDate: number;
     timeSlot: {
-      start: string,
-      end: string,
-    },
-    spotsNumber: number,
-    id: string,
+      start: string;
+      end: string;
+    };
+    spotsNumber: number;
+    id: string;
   }
 
   enum Status {
@@ -20,6 +20,6 @@ declare namespace Booking {
     confirmed = "confirmed", // confermata dall'host
     canceled = "canceled", // cancellata dal cliente
     refused = "refused", // rifiutata dall'host
-    closed = "closed" // chiusa, completata
+    closed = "closed", // chiusa, completata
   }
 }

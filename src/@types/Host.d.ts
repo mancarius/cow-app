@@ -1,7 +1,7 @@
 import { UserInfo } from "firebase/auth";
 
 
-declare namespace Host {
+export namespace Host {
   interface Info {
     name: string;
     description: string;
@@ -62,4 +62,6 @@ declare namespace Host {
     };
     tags: Host.Info["tags"];
   }
+
+  interface SearchResult extends Omit<Host.Info, "spaces"> {}
 }
