@@ -32,17 +32,17 @@ const HostDetails: React.FC = () => {
 
   return (
     <Fragment>
-      
+      {host ? (
         <Box className="HostDetails">
           <Stack className="HostDetails_title" direction="row">
             <Button className="HostDetails_back">
               <ArrowBackIcon />
             </Button>
-            <Typography variant="h3">Mind Lounge</Typography>
+            <Typography variant="h3">{host.name}</Typography>
           </Stack>
 
-          <HostCarousel></HostCarousel>
-          <HostCarouselFooter></HostCarouselFooter>
+          <HostCarousel images={host.images}></HostCarousel>
+          <HostCarouselFooter tags={host.tags} address={host.address}></HostCarouselFooter>
           <HostDate></HostDate>
           <Box className="HostDetails_order">
             <HostOrder></HostOrder>
@@ -51,7 +51,9 @@ const HostDetails: React.FC = () => {
 
           <HostContact></HostContact>
         </Box>
-      
+      ) : (
+        ""
+      )}
     </Fragment>
   );
 };
