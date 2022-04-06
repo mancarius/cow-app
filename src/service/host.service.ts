@@ -59,7 +59,8 @@ export default class HostService implements Host.Info {
   public static async findMany(
     filters: Host.Filters
   ): Promise<Host.SearchResult[]> {
-    const { address, date, timeSlot: requiredTimeSlot, tags } = filters;
+    const { address, tags } = filters;
+    let { date, timeSlot: requiredTimeSlot } = filters;
 
     if (typeof address !== "string" || !address.trim().length)
       throw new TypeError("Address is not a valid string");
@@ -107,6 +108,21 @@ export default class HostService implements Host.Info {
           filteredHostsRefs.push(document.ref);
         }
       });
+      
+      // SPACES
+      if (typeof date !== "object") {
+        date = {
+          start: new Date().setHours(0),
+          end: new Date().setHours(23),
+        };
+      }
+
+      if (typeof requiredTimeSlot !== "object") {
+        requiredTimeSlot = {
+          start: '00:00',
+          end: '23:59',
+        };
+      }
 
       const spacesQueryClauses = [where("host", "in", filteredHostsRefs)];
 
@@ -116,7 +132,6 @@ export default class HostService implements Host.Info {
 
       const availableHosts: Host.Info[] = [];
 
-      // SPACES
       spacesQuerySnapshot.forEach(async (document) => {
         const space = { ...document.data(), id: document.id } as Host.Space;
         const hostRef = doc(db, space.host);
@@ -129,8 +144,16 @@ export default class HostService implements Host.Info {
             Booking.Status.confirmed,
             Booking.Status.pending,
           ]),
-          where("startDate", ">=", date.start),
-          where("endDate", "<=", date.end)
+          where(
+            "startDate",
+            ">=",
+            date!.start
+          ),
+          where(
+            "endDate",
+            "<=",
+            date!.end
+          )
         );
 
         const bookingsQuerySnapshot = await getDocs(bookingsQuery);
@@ -145,7 +168,7 @@ export default class HostService implements Host.Info {
 
         const availableSpotsPerDay: number[] = [];
         // per ogni giorno richiesto, verifico 1) se ci sono prenotazioni 2) se sono nella fascia oraria richiesta 3) quanti slot liberi rimangono.
-        getDaysArray(date.start, date.end).forEach((day) => {
+        getDaysArray(date!.start, date!.end).forEach((day) => {
           const bookingsForThisDay = bookings.filter((booking) => {
             const startDateTime = new Date(booking.startDate).getTime();
             const endDateTime = new Date(booking.endDate).getTime();
@@ -158,7 +181,7 @@ export default class HostService implements Host.Info {
           const overlappingBookings = bookingsForThisDay.filter((booking) => {
             const { timeSlot } = booking;
             const { start: requiredStartTime, end: requiredEndTime } =
-              requiredTimeSlot;
+              requiredTimeSlot!;
             const startDateTime = StringToDateTime(day, timeSlot.start);
             const endDateTime = StringToDateTime(day, timeSlot.end);
             const requiredStartDateTime = StringToDateTime(
