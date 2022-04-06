@@ -1,19 +1,29 @@
-import * as React from "react";
+import {useEffect, Fragment} from "react";
 import "./SearchResults.css";
-import NavBar from "../../components/NavBar/NavBar";
 import PrenotationSearch from "../../components/PrenotationSearch/PrenotationSearch";
 import ResultCard from "../../components/ResultCard/ResultCard";
-import Footer from "../../components/Footer/Footer";
-
+import { useSearchParams } from "react-router-dom";
 import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
-
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { Host } from "../../@types/Host";
 
 const SearchResults: React.FC = () => {
-  return (
-    <React.Fragment>
-      <NavBar />
+  const [searchParams, setSearchPArams] = useSearchParams();
 
+  useEffect(() => {
+    const address = searchParams.get("address") || '';
+    const dateInterval = searchParams.get("dateInterval") || undefined;
+    const timeInterval = searchParams.get("timeInterval") || undefined;
+    const tags = searchParams.getAll('tags');
+
+    /*const filters: Host.Filters = {
+      address,
+      
+    }*/
+  }, [searchParams])
+
+  return (
+    <Fragment>
       <Box className="searchResultPage">
         <Container
           maxWidth="xl"
@@ -48,9 +58,7 @@ const SearchResults: React.FC = () => {
           </Box>
         </Container>
       </Box>
-
-      <Footer></Footer>
-    </React.Fragment>
+    </Fragment>
   );
 };
 
