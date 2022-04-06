@@ -1,0 +1,15 @@
+
+
+.HostContact{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.HostContact_box{
+    display: flex;
+    margin-top: 20px;
+}
+
+.HostContact_box p{
+    margin-right: 40px;
+}

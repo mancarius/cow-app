@@ -1,0 +1,46 @@
+
+
+.HostCart{
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 3px 3px 8px;
+    width: 23%;
+    margin-left: 2%;
+    height: 300px;
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.HostCart h3{
+    font-size: 30px;
+    margin-bottom: 30px;
+}
+
+.HostCart_stack{
+    margin-bottom: 30px;
+}
+
+.HostCart_stack p{
+    font-size: 20px;
+}
+
+.HostCart_total{
+    font-size: 35px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.HostCart button{
+    color: black;
+    background-color: #FFC533;
+    text-transform: none;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    height: 50px;
+}
+
+.HostCart button:hover{
+    background-color: #FFC533
+}

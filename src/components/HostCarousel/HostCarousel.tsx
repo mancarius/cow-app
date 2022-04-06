@@ -23,4 +23,4 @@ const HostCarousel: React.FC = () => {
   )
 }
 
-export default HostCarousel
+export default HostCarousel;
