@@ -44,3 +44,48 @@
 .HostCart button:hover{
     background-color: #FFC533
 }
+
+
+@media only screen and (max-width: 1301px) {
+
+    .HostCart{
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        background-color: white;
+        margin-left: 0;
+        flex-direction: row;
+        width: 100%;
+        height: 50px;
+        justify-content: flex-start;
+        align-items: center;
+        border-radius: 0 ;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+
+    .HostCart h3{
+        display: none;
+    }
+
+    .HostCart_stack{
+        margin-bottom: 0;
+    }
+
+    .HostCart_stack p{
+
+    }
+    
+    .HostCart_total{
+        margin-bottom: 0;
+        order: -1;
+        margin-right: 2%;
+    }
+    
+    .HostCart button{
+        position: absolute;
+        right: 0 ;
+        margin-right: 60px;
+        width: 150px;
+    }
+    
+}

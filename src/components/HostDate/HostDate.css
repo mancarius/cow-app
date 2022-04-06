@@ -48,3 +48,34 @@
     outline: none;
     
 }
+
+@media only screen and (max-width: 921px) {
+
+    .HostDate{
+        width: 100%;
+    }
+    
+    .HostDate h3{
+        display: none;
+    }
+
+    .HostDate_box{
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .HostDate_stack{
+        width: 50%;
+        margin-left: 0;
+    }
+
+    .HostDate_stack span{
+        width: 93%;
+
+    }
+
+    .HostDate_stack input{
+        width: 90%;
+    }
+    
+}
