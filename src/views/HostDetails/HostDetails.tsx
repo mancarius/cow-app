@@ -11,8 +11,6 @@ const HostDetails: React.FC = () => {
     
   return (
     <React.Fragment>
-      <NavBar></NavBar>
-
       <Box className="HostDetails">
         <Stack direction="row">
           <Button><ArrowBackIcon/></Button>
@@ -22,8 +20,6 @@ const HostDetails: React.FC = () => {
         <HostOrder></HostOrder>
 
       </Box>
-
-      <Footer></Footer>
     </React.Fragment>
 
   )
