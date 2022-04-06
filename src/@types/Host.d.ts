@@ -52,11 +52,11 @@ export namespace Host {
 
   interface Filters {
     address: string;
-    date: {
-      start: string;
-      end: string;
+    date?: {
+      start: number;
+      end: number;
     };
-    timeSlot: {
+    timeSlot?: {
       start: string;
       end: string;
     };

@@ -10,7 +10,7 @@ export function getWeekDayName(
   }) as keyof Host.OpeningDays;
 }
 
-export function getDaysArray(start: string, end: string): string[] {
+export function getDaysArray(start: string | number, end: string | number): string[] {
   for (
     var arr = [], dt = new Date(start);
     dt <= new Date(end);
