@@ -56,3 +56,16 @@
     
 }
 
+
+@media only screen and (max-width: 801px) {
+
+    .fist_image{
+        width: 100%;
+    }
+
+    .other_image{
+        display: none;
+    }
+    
+}
+
