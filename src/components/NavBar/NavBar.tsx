@@ -69,7 +69,7 @@ const NavBar = () => {
           bgcolor: "#9BE3DE",
           borderRadius: "30px",
           alignSelf: "center",
-          width: "95%",
+          width: "97%",
         }}
       >
         <Toolbar>
