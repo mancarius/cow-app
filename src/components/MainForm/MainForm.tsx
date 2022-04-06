@@ -1,4 +1,4 @@
-import * as React from "react";
+import { ChangeEvent, useState, FormEvent } from "react";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -9,15 +9,19 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
+import { useNavigate } from "react-router-dom";
+import { serialize } from "../../utils/serialize";
 
 export default function SignUp() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const navigate = useNavigate()
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
+    const formData = new FormData(event.currentTarget);
+    const data: Record<string, string> = {};
+    formData.forEach((value, key) => {
+      typeof value === "string" && (data[key] = value);
     });
+    navigate(`/results?${serialize(data)}`);
   };
 
   return (
@@ -37,7 +41,7 @@ export default function SignUp() {
               Dove?
             </Typography>
             <Paper
-              component="form"
+              component="div"
               sx={{
                 paddingTop: "10px",
                 paddingBottom: "10px",
@@ -52,6 +56,7 @@ export default function SignUp() {
               <InputBase
                 sx={{ ml: 1, flex: 1 }}
                 placeholder="Cerca nei dintorni..."
+                name="address"
               />
             </Paper>
           </Grid>
@@ -60,7 +65,7 @@ export default function SignUp() {
               Quando?
             </Typography>
             <Paper
-              component="form"
+              component="div"
               sx={{
                 paddingTop: "10px",
                 paddingBottom: "10px",
@@ -75,7 +80,11 @@ export default function SignUp() {
                 aria-label="menu"
               />
 
-              <InputBase sx={{ ml: 1, flex: 1 }} placeholder="es. Today" />
+              <InputBase
+                sx={{ ml: 1, flex: 1 }}
+                placeholder="es. Today"
+                name="dateInterval"
+              />
             </Paper>
           </Grid>
           <Grid item xs={12} sm={6} sx={{ mt: 4 }}>
@@ -83,7 +92,7 @@ export default function SignUp() {
               A che ora?
             </Typography>
             <Paper
-              component="form"
+              component="div"
               sx={{
                 paddingTop: "10px",
                 paddingBottom: "10px",
@@ -98,7 +107,11 @@ export default function SignUp() {
                 aria-label="menu"
               />
 
-              <InputBase sx={{ ml: 1, flex: 1 }} placeholder="15:30 - 16:30" />
+              <InputBase
+                sx={{ ml: 1, flex: 1 }}
+                placeholder="15:30 - 16:30"
+                name="timeInterval"
+              />
             </Paper>
           </Grid>
         </Grid>
