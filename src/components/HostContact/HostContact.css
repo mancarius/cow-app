@@ -5,6 +5,10 @@
     margin-bottom: 50px;
 }
 
+.HostContact h2{
+    font-size: 35px;
+}
+
 .HostContact_box{
     display: flex;
     margin-top: 20px;
@@ -12,4 +16,5 @@
 
 .HostContact_box p{
     margin-right: 40px;
+    font-size: 17px;
 }
