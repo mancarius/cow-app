@@ -12,6 +12,8 @@ const HostDetails: React.FC = () => {
   const [host, setHost] = useState<HostService | null>(null);
   const { id } = useParams();
 
+  // {host ? ( ... ) : <h2>Loading...</h2>}  ---- {host.name}
+
   useEffect(() => {
     if (id) {
       HostService.findById(id)
@@ -26,18 +28,18 @@ const HostDetails: React.FC = () => {
 
   return (
     <Fragment>
-      {host ? (
+      
         <Box className="HostDetails">
           <Stack direction="row">
             <Button>
               <ArrowBackIcon />
             </Button>
-            <Typography variant="h4">{host.name}</Typography>
+            <Typography variant="h4">hsbdks</Typography>
           </Stack>
           <HostCarousel></HostCarousel>
           <HostOrder></HostOrder>
         </Box>
-      ) : <h2>Loading...</h2>}
+      
     </Fragment>
   );
 };

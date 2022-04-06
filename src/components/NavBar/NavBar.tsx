@@ -19,6 +19,7 @@ import { RootState } from "../../store";
 import { useAppDispatch } from '../../store'
 import { customerLogout, requireAuth } from "../../store/features/customer/slice";
 
+
 const pages = ["About", "contacts"];
 const settings = ["Account", "Dashboard"];
 
@@ -60,15 +61,15 @@ const NavBar = () => {
 
   return (
     /* Problems position fixed with search result */
-    <AppBar elevation={0} sx={{ backgroundColor: "white" }} position="static">
+    <AppBar elevation={0} sx={{ backgroundColor: "white"}} position="static">
       <Container
-        maxWidth="xl"
+        maxWidth="xxl"
         sx={{
           m: "20px",
           bgcolor: "#9BE3DE",
           borderRadius: "30px",
           alignSelf: "center",
-          width: "97%",
+          width: "95%",
         }}
       >
         <Toolbar>
