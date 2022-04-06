@@ -1,58 +1,45 @@
-import * as React from "react";
-import { useParams } from 'react-router-dom'
-import HostService from '../../service/host.service'
+import { useEffect, useState, Fragment } from "react";
+import { useParams } from "react-router-dom";
+import HostService from "../../service/host.service";
 
-import './HostDetails.css';
-import NavBar from "../../components/NavBar/NavBar";
-import Footer from "../../components/Footer/Footer";
+import "./HostDetails.css";
 import HostCarousel from "../../components/HostCarousel/HostCarousel";
 import HostOrder from "../../components/HostOrder/HostOrder";
 import { Box, Button, Stack, Typography } from "@mui/material";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-
-
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const HostDetails: React.FC = () => {
+  const [host, setHost] = useState<HostService | null>(null);
+  const { id } = useParams();
 
-  const { id } = useParams()
-
-  React.useEffect(() => {
-    if(id) {
-      HostService.findById(id).then((response) => {
-        const resultSingleHost = response
-        console.log(resultSingleHost) 
-        return resultSingleHost
-      }
-      ).catch((error) => {
-        console.log(error)
-      }) 
+  useEffect(() => {
+    if (id) {
+      HostService.findById(id)
+        .then((instance) => {
+          setHost(instance);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
-  }, [id])
+  }, [id]);
 
-//  const { 
-//    adress, 
-//    contact, 
-//    description,  
-//    images, 
-//    openingDays, 
-//    spaces, 
-//    tags 
-//   } = resultSingleHost
-    
   return (
-    <React.Fragment>
-      <Box className="HostDetails">
-        <Stack direction="row">
-          <Button><ArrowBackIcon/></Button>
-          <Typography variant="h4">Mind Lounge</Typography>
-        </Stack>
-        <HostCarousel></HostCarousel>
-        <HostOrder></HostOrder>
-
-      </Box>
-    </React.Fragment>
-
-  )
-}
+    <Fragment>
+      {host ? (
+        <Box className="HostDetails">
+          <Stack direction="row">
+            <Button>
+              <ArrowBackIcon />
+            </Button>
+            <Typography variant="h4">{host.name}</Typography>
+          </Stack>
+          <HostCarousel></HostCarousel>
+          <HostOrder></HostOrder>
+        </Box>
+      ) : <h2>Loading...</h2>}
+    </Fragment>
+  );
+};
 
 export default HostDetails;
