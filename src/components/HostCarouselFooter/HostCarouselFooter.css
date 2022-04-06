@@ -32,11 +32,25 @@
 
     .HostCarouselFooter_features{
         margin-top: 30px;
+        
     }
 
     .HostCarouselFooter_features span{
         margin-left: 0;
         margin-right: 20px;
+    }
+    
+}
+
+@media only screen and (max-width: 601px) {
+
+    .HostCarouselFooter{
+        height: auto;
+    }
+
+    .HostCarouselFooter_features{
+        display: flex;
+        flex-wrap: wrap;
     }
     
 }
