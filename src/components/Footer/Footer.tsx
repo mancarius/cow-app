@@ -69,14 +69,14 @@ export default function Footer() {
       }}
     >
       <Container sx={{ my: 8, mb: 0, display: "flex" }} disableGutters={true}>
-        <Grid container spacing={5} justifyContent="space-between">
+        <Grid container spacing={0} justifyContent="space-around">
           <Grid item xs={6} sm={4} md={3}>
             <Grid
               container
               direction="column"
               justifyContent="flex-end"
               spacing={2}
-              sx={{ height: 120 }}
+              sx={{ height: { xs: 200, sm: 120 } }}
             >
               <Grid item sx={{ display: "flex" }}>
                 <Box
@@ -85,7 +85,7 @@ export default function Footer() {
                     width: 120,
                   }}
                   alt="Your logo."
-                  src="https://cdn.discordapp.com/attachments/957585239364993025/959751983261163530/Untitled_Artwork_92.png"
+                  src="../../../assets/logo-small.png"
                 />
               </Grid>
             </Grid>
@@ -97,12 +97,12 @@ export default function Footer() {
               gutterBottom
               component="div"
             >
-              Contatti
+              Contacts
             </Typography>
             <Box component="ul" sx={{ m: 0, listStyle: "none", p: 0 }}>
               <Box component="li" sx={{ py: 0.5 }}>
                 <Link sx={{ color: "black" }} href="https://mui.com/">
-                  Contatto1
+                  info@email.com
                 </Link>
               </Box>
               <Box component="li" sx={{ py: 0.5 }}>
@@ -119,15 +119,15 @@ export default function Footer() {
               gutterBottom
               component="div"
             >
-              Link
+              Social
             </Typography>
             <Box component="ul" sx={{ m: 0, listStyle: "none", p: 0 }}>
               <Box component="li" sx={{ py: 0.5 }}>
                 <Link sx={{ color: "black" }} href="https://mui.com/">
-                  FAQ
+                  About
                 </Link>
               </Box>
-              <Box component="li" sx={{ py: 0.5 }}>
+              {/* <Box component="li" sx={{ py: 0.5 }}>
                 <Link sx={{ color: "black" }} href="https://mui.com/">
                   Support
                 </Link>
@@ -136,10 +136,10 @@ export default function Footer() {
                 <Link sx={{ color: "black" }} href="https://mui.com/">
                   About
                 </Link>
-              </Box>
+              </Box> */}
             </Box>
           </Grid>
-          <Grid item xs={12} sm={12} md={4} sx={{ marginX: { xs: 12, sm: 0 } }}>
+          {/* <Grid item xs={12} sm={12} md={4} sx={{ marginX: { xs: 12, sm: 0 } }}>
             <Typography
               sx={{ color: "black" }}
               variant="h6"
@@ -148,7 +148,7 @@ export default function Footer() {
             >
               Social
             </Typography>
-            {/* <TextField
+             <TextField
               className={classes.root}
               select
               size="medium"
@@ -166,7 +166,7 @@ export default function Footer() {
                   {language.name}
                 </option>
               ))}
-            </TextField> */}
+            </TextField> 
 
             <Grid item sx={{ display: "flex" }}>
               <Box component="a" href="https://facebook.com/" sx={iconStyle}>
@@ -179,7 +179,7 @@ export default function Footer() {
                 <YouTubeIcon sx={{ color: "black", fontSize: 30 }} />
               </Box>
             </Grid>
-          </Grid>
+          </Grid> */}
 
           <Grid xs={12} item sx={{ bgcolor: "#5CC0BA", mt: 10 }}>
             <Box 

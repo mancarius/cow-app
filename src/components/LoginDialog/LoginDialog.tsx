@@ -73,7 +73,7 @@ export default function SignIn() {
           </Grid>
           <Grid item xs={12} sm={6} sx={{ mt: 2 }}>
             <Typography variant="h6" mb={3} ml={2}>
-              Accedi o Registrati
+              Login or Sign up
             </Typography>
           </Grid>
         </Grid>
@@ -81,7 +81,16 @@ export default function SignIn() {
       <DialogContent>
         <Grid width={"100%"} sx={{ mt: 2 }}>
           <Typography variant="h5" sx={{ fontWeight: "500" }} mb={0.5} ml={2}>
-            Benvenut* a bordo!
+            Welcome on board!
+            <Box
+              component="img"
+              sx={{
+                height: 25,
+                marginLeft: 1,
+              }}
+              alt="Your logo."
+              src="../../../assets/logo-small.png"
+            />
           </Typography>
         </Grid>
         <Container
@@ -106,7 +115,7 @@ export default function SignIn() {
                   sx={{ fontWeight: "500" }}
                   mb={1}
                 >
-                  La tua E-mail
+                  Your E-mail
                 </Typography>
                 <Paper
                   elevation={0}
@@ -134,7 +143,7 @@ export default function SignIn() {
                   mb={1}
                   sx={{ fontWeight: "500" }}
                 >
-                  La tua Password
+                  Your Password
                 </Typography>
                 <Paper
                   elevation={0}
@@ -182,7 +191,7 @@ export default function SignIn() {
                     },
                   }}
                 >
-                  Accedi
+                  I'm in
                 </Button>
               </Grid>
 
@@ -250,7 +259,7 @@ export default function SignIn() {
                 },
               }}
             >
-              Continua con Google
+              Login with Google
             </Button>
             <Button
               type="submit"
@@ -297,7 +306,7 @@ export default function SignIn() {
                 },
               }}
             >
-              Continua con Facebook
+              Login with Facebook
             </Button>
             <Button
               type="submit"
@@ -327,7 +336,7 @@ export default function SignIn() {
                 },
               }}
             >
-              Registrati con l'email
+              Sign up with e-mail
             </Button>
           </Box>
         </Container>

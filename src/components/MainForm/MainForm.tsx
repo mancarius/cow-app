@@ -38,7 +38,7 @@ export default function SignUp() {
         <Grid container spacing={2}>
           <Grid item xs={12} sx={{ mt: 5 }}>
             <Typography variant="h6" mb={1} ml={2}>
-              Dove?
+              Where?
             </Typography>
             <Paper
               component="div"
@@ -55,14 +55,14 @@ export default function SignUp() {
 
               <InputBase
                 sx={{ ml: 1, flex: 1 }}
-                placeholder="Cerca nei dintorni..."
+                placeholder="Search nearby..."
                 name="address"
               />
             </Paper>
           </Grid>
           <Grid item xs={12} sm={6} sx={{ mt: 4 }}>
             <Typography variant="h6" mb={1} ml={2}>
-              Quando?
+              When?
             </Typography>
             <Paper
               component="div"
@@ -89,7 +89,7 @@ export default function SignUp() {
           </Grid>
           <Grid item xs={12} sm={6} sx={{ mt: 4 }}>
             <Typography variant="h6" mb={1} ml={2}>
-              A che ora?
+              What time?
             </Typography>
             <Paper
               component="div"
@@ -140,7 +140,7 @@ export default function SignUp() {
             },
           }}
         >
-          Cerca!
+          Find my place!
         </Button>
       </Box>
     </Container>
