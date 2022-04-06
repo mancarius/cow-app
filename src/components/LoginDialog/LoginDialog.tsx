@@ -18,7 +18,7 @@ import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import IconButton from "@mui/material/IconButton";
 import SvgIcon from "@material-ui/core/SvgIcon";
-import { RootState, useAppDispatch } from '../../store'
+import { RootState, useAppDispatch } from '../../store';
 import { AuthProvider } from "../../@types/AuthProvider.d";
 import { customerLogin, dismissAuth } from "../../store/features/customer/slice";
 import { useSelector } from "react-redux";

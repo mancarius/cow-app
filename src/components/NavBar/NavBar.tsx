@@ -1,6 +1,7 @@
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
+import Link from "@mui/material/Link";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
@@ -71,14 +72,17 @@ const NavBar = () => {
         }}
       >
         <Toolbar>
-          <Box
-            component="img"
-            sx={{
-              height: 84,
-            }}
-            alt="Your logo."
-            src="https://cdn.discordapp.com/attachments/957585239364993025/959751983261163530/Untitled_Artwork_92.png"
-          />
+          <Link href="./">
+            <Box
+              component="img"
+              sx={{
+                height: 84,
+              }}
+              alt="Your logo."
+              src="https://cdn.discordapp.com/attachments/957585239364993025/959751983261163530/Untitled_Artwork_92.png"
+            />
+          </Link>
+          
           <Box
             sx={{
               justifyContent: "flex-end",
