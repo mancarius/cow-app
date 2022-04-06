@@ -19,7 +19,8 @@ import { RootState } from "../../store";
 import { useAppDispatch } from '../../store'
 import { customerLogout, requireAuth } from "../../store/features/customer/slice";
 
-const pages = ["About", "Contatti"];
+
+const pages = ["About", "contacts"];
 const settings = ["Account", "Dashboard"];
 
 const NavBar = () => {
@@ -60,9 +61,9 @@ const NavBar = () => {
 
   return (
     /* Problems position fixed with search result */
-    <AppBar elevation={0} sx={{ backgroundColor: "white" }} position="static">
+    <AppBar elevation={0} sx={{ backgroundColor: "white"}} position="static">
       <Container
-        maxWidth="xl"
+        maxWidth="xxl"
         sx={{
           m: "20px",
           bgcolor: "#9BE3DE",
@@ -79,7 +80,7 @@ const NavBar = () => {
                 height: 84,
               }}
               alt="Your logo."
-              src="https://cdn.discordapp.com/attachments/957585239364993025/959751983261163530/Untitled_Artwork_92.png"
+              src="../../../assets/logo-full.png"
             />
           </Link>
           

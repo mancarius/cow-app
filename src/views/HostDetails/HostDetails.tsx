@@ -5,12 +5,18 @@ import HostService from "../../service/host.service";
 import "./HostDetails.css";
 import HostCarousel from "../../components/HostCarousel/HostCarousel";
 import HostOrder from "../../components/HostOrder/HostOrder";
+import HostCarouselFooter from "../../components/HostCarouselFooter/HostCarouselFooter";
+import HostDate from "../../components/HostDate/HostDate";
+import HostCart from "../../components/HostCart/HostCart";
+import HostContact from "../../components/HostContact/HostContact";
 import { Box, Button, Stack, Typography } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const HostDetails: React.FC = () => {
   const [host, setHost] = useState<HostService | null>(null);
   const { id } = useParams();
+
+  // {host ? ( ... ) : <h2>Loading...</h2>}  ---- {host.name}
 
   useEffect(() => {
     if (id) {
@@ -26,18 +32,26 @@ const HostDetails: React.FC = () => {
 
   return (
     <Fragment>
-      {host ? (
+      
         <Box className="HostDetails">
-          <Stack direction="row">
-            <Button>
+          <Stack className="HostDetails_title" direction="row">
+            <Button className="HostDetails_back">
               <ArrowBackIcon />
             </Button>
-            <Typography variant="h4">{host.name}</Typography>
+            <Typography variant="h3">Mind Lounge</Typography>
           </Stack>
+
           <HostCarousel></HostCarousel>
-          <HostOrder></HostOrder>
+          <HostCarouselFooter></HostCarouselFooter>
+          <HostDate></HostDate>
+          <Box className="HostDetails_order">
+            <HostOrder></HostOrder>
+            <HostCart></HostCart>
+          </Box>
+
+          <HostContact></HostContact>
         </Box>
-      ) : <h2>Loading...</h2>}
+      
     </Fragment>
   );
 };

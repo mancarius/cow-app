@@ -3,3 +3,23 @@
     padding-left: 5%;
     padding-right: 5%;
 }
+
+.HostDetails_title{
+    margin-top: 50px;
+}
+
+.HostDetails_back svg{
+    color: black;
+    width: 30px !important;
+    height: 30px !important;
+}
+
+.HostDetails_title h3{
+    font-weight: 600;
+}
+
+.HostDetails_order{
+    display: flex;
+}
+
+

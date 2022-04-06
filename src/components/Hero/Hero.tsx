@@ -34,11 +34,13 @@ export default function Hero() {
           >
             <Grid item xs={12} sm={4} md={6}>
               <Typography variant="h2" mb={10} sx={{ fontWeight: "400" }}>
-                Coworking quando vuoi
+                The perfect coworking space, only a click away
               </Typography>
               <Typography variant="h5" sx={{ fontWeight: "400" }}>
-                Lorem ipsum dolor sit amet, consectetur <br /> adipiscing elit,
-                sed do eiusmod tempor..
+                Find your place, wherever and whenever you want.
+              </Typography>
+              <Typography variant="h5" sx={{ fontWeight: "400" }}>
+                Are you in?
               </Typography>
             </Grid>
             <Grid item xs={12} sm={4} md={5}>

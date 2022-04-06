@@ -15,27 +15,18 @@ import Container from "@mui/material/Container";
 const features = [
   {
     description: [
-      "Lorem",
-      "20 GB of storage",
-      "Help center access",
-      "Help center access",
-      "Email support",
+      "If you are a customer:",
+      "1. Register with Facebook, Google or e-mail",
+      "2. Go to the booking page and select your preferred day and time",
+      "3. Choose from the available options and enjoy your stay!",
     ],
   },
   {
     description: [
-      "Ipsum",
-      "10 GB of storage",
-      "Help center access",
-      "Priority email support",
-    ],
-  },
-  {
-    description: [
-      "Dolor",
-      "30 GB of storage",
-      "Help center access",
-      "Phone & email support",
+      "If you want to list your property:",
+      "1. Register with your company e-mail, Google or e-mail",
+      "2. Enter the information about your coworking space",
+      "3. Get ready to offer an unforgettable stay to your guests!",
     ],
   },
 ];
@@ -62,7 +53,7 @@ function FeatureContent() {
           color="text.primary"
           gutterBottom
         >
-          Come funziona?
+          How it works?
         </Typography>
       </Container>
       {/* End Title */}
@@ -74,7 +65,7 @@ function FeatureContent() {
               item
               xs={12}
               sm={6}
-              md={4}
+              md={6}
               sx={{
                 display: "flex",
                 flexDirection: "column",

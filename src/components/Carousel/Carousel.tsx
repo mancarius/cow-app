@@ -59,7 +59,8 @@ function CarouselContent() {
           color="text.primary"
           gutterBottom
         >
-          I più visitati
+          Check this out:
+          Your perfect coworking space is waiting to be found!
         </Typography>
       </Container>
       {/* End Title */}

@@ -1,0 +1,42 @@
+
+.HostCarouselFooter{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    color: #5C5C5C;
+}
+
+.HostCarouselFooter_address{
+    font-size: 20px;
+}
+
+.HostCarouselFooter_features{
+    
+}
+
+.HostCarouselFooter_features span{
+    margin-left: 20px;
+    border: 2px solid #FFC533;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 30px;
+}
+
+@media only screen and (max-width: 921px) {
+    .HostCarouselFooter{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .HostCarouselFooter_features{
+        margin-top: 30px;
+    }
+
+    .HostCarouselFooter_features span{
+        margin-left: 0;
+        margin-right: 20px;
+    }
+    
+}
