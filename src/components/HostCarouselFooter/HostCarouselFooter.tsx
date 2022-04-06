@@ -14,7 +14,7 @@ const HostCarouselFooter: React.FC<Pick<Host.Info, "address" | "tags">> = ({
       </span>
       <Box className="HostCarouselFooter_features">
         {tags.map((tag) => (
-          <span>tag</span>
+          <span>{tag}</span>
         ))}
       </Box>
     </Box>
