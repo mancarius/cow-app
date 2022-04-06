@@ -223,6 +223,7 @@ export default class HostService implements Host.Info {
           ...hostSnapshot.data(),
           id: hostSnapshot.id,
         } as Host.Info;
+        host.spaces = [];
         spacesSnapshot.forEach((space) => {
           host.spaces.push({ ...space.data(), id: space.id } as Host.Space);
         });
