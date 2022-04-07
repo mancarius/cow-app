@@ -1,22 +1,17 @@
 import { Box, Button, Container, Grid, Typography } from '@mui/material'
+import "./NotFound.css"
 
 const backgroundImage = "../../../assets/404.png";
 
 const NotFound: React.FC = () => {
     
   return (
-        <Typography
-      sx={{
-        display: "flex",
-        height: "100vh",
-        backgroundImage: `url(${backgroundImage})`,
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center center",
-      }}
-    >
-      <Container maxWidth="xl">
-        <Box
+      
+      <Box className='NotFound' >
+
+        <img src={backgroundImage} />
+    
+        <Box className='NotFound_box'
           display="flex"
           justifyContent="center"
           alignItems="center"
@@ -73,8 +68,9 @@ const NotFound: React.FC = () => {
 
           </Grid>
         </Box>
-      </Container>
-    </Typography>
+
+        
+      </Box>
   
   )
 }
