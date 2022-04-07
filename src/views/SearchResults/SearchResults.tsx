@@ -45,33 +45,26 @@ const SearchResults: React.FC = () => {
   return (
     <Fragment>
       <Box className="searchResultPage">
-        
-          <Stack className="directory" direction="row">
-            <Button variant="text">Homepage</Button>
-            <ArrowForwardIosIcon />
-            <Button variant="text">Piemonte</Button>
-            <ArrowForwardIosIcon />
-            <Button variant="text">Ricerca</Button>
-          </Stack>
+        <Stack className="directory" direction="row">
+          <Button variant="text">Homepage</Button>
+          <ArrowForwardIosIcon />
+          <Button variant="text">Piemonte</Button>
+          <ArrowForwardIosIcon />
+          <Button variant="text">Ricerca</Button>
+        </Stack>
 
-          <Stack className="viewMap">
-            <Button variant="text">Visualiza su mappa</Button>
-          </Stack>
+        <Stack className="viewMap">
+          <Button variant="text">Visualiza su mappa</Button>
+        </Stack>
 
-          <Box className="sr_container">
-            <div className="ps_container">
-              <PrenotationSearch />
-            </div>
-            <Box className="myCardContainer">
-              <ResultCard />
-              <ResultCard />
-              <ResultCard />
-              <ResultCard />
-              <ResultCard />
-              <ResultCard />
-            </Box>
+        <Box className="sr_container">
+          <div className="ps_container">
+            <PrenotationSearch />
+          </div>
+          <Box className="myCardContainer">
+            {hosts.length ? hosts.map((host) => <ResultCard host={host} key={host.id} />) : ""}
           </Box>
-        
+        </Box>
       </Box>
     </Fragment>
   );

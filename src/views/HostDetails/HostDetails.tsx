@@ -11,9 +11,19 @@ import HostCart from "../../components/HostCart/HostCart";
 import HostContact from "../../components/HostContact/HostContact";
 import { Box, Button, Stack, Typography } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { Host } from "../../@types/Host";
 
 const HostDetails: React.FC = () => {
   const [host, setHost] = useState<HostService | null>(null);
+  const [book, setBook] = useState<
+    Pick<Host.Space, "price" | "currency" | "type" | "id"> & { spots: number }
+  >({
+    price: 0,
+    currency: "",
+    type: "",
+    spots: 0,
+    id: ''
+  });
   const { id } = useParams();
 
   // {host ? ( ... ) : <h2>Loading...</h2>}  ---- {host.name}
@@ -42,14 +52,17 @@ const HostDetails: React.FC = () => {
           </Stack>
 
           <HostCarousel images={host.images}></HostCarousel>
-          <HostCarouselFooter tags={host.tags} address={host.address}></HostCarouselFooter>
+          <HostCarouselFooter
+            tags={host.tags}
+            address={host.address}
+          ></HostCarouselFooter>
           <HostDate></HostDate>
           <Box className="HostDetails_order">
-            <HostOrder></HostOrder>
-            <HostCart></HostCart>
+            <HostOrder spaces={host.spaces} setBook={setBook}></HostOrder>
+            {book.spots && <HostCart book={book}></HostCart>}
           </Box>
 
-          <HostContact></HostContact>
+          <HostContact contact={host.contact}></HostContact>
         </Box>
       ) : (
         ""

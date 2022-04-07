@@ -46,7 +46,6 @@ function PrenotationSearch() {
     },
     ...query,
   });
-  console.log(query);
 
   const [tagList, setTagList] = useState<Host.Info["tags"]>([]);
 
@@ -150,8 +149,9 @@ function PrenotationSearch() {
             <FormControlLabel
               control={<Checkbox />}
               label={tag}
-              checked={filters.tags.some((t: string) => t === tag)}
+              checked={[filters.tags].flat().some((t: string) => t === tag)}
               onChange={handleTag(tag)}
+              key={tag}
             />
           ))}
         </FormGroup>

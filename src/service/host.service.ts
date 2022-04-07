@@ -7,7 +7,9 @@ import {
   DocumentReference,
   getDoc,
   getDocs,
+  orderBy,
 } from "firebase/firestore";
+import _ from "lodash";
 import { Booking } from "../@types/Booking.d";
 import { Host } from "../@types/Host.d";
 import { db } from "../configs/firebase";
@@ -108,7 +110,7 @@ export default class HostService implements Host.Info {
           filteredHostsRefs.push(document.ref);
         }
       });
-      
+
       // SPACES
       if (typeof date !== "object") {
         date = {
@@ -119,8 +121,8 @@ export default class HostService implements Host.Info {
 
       if (typeof requiredTimeSlot !== "object") {
         requiredTimeSlot = {
-          start: '00:00',
-          end: '23:59',
+          start: "00:00",
+          end: "23:59",
         };
       }
 
@@ -130,40 +132,42 @@ export default class HostService implements Host.Info {
 
       const spacesQuerySnapshot = await getDocs(spacesQuery);
 
-      const availableHosts: Host.Info[] = [];
+      let availableHosts: Host.Info[] = [];
+
+      const spaces: (Host.Space & { ref: DocumentReference<DocumentData> })[] =
+        [];
 
       spacesQuerySnapshot.forEach(async (document) => {
         const space = { ...document.data(), id: document.id } as Host.Space;
-        const hostRef = doc(db, space.host);
+        spaces.push({ ...space, ref: document.ref });
+      });
 
+      for (const space of spaces) {
+        const hostRef = space.host;
         // verifico se ci sono altre prenotazioni nel periodo scelto
         const bookingsQuery = query(
           bookingsRef,
-          where("space", "==", document.ref),
+          where("space", "==", space.ref),
           where("status", "in", [
             Booking.Status.confirmed,
             Booking.Status.pending,
           ]),
-          where(
-            "startDate",
-            ">=",
-            date!.start
-          ),
-          where(
-            "endDate",
-            "<=",
-            date!.end
-          )
+          where("endDate", ">=", date!.start),
+          orderBy("endDate", "desc")
         );
 
         const bookingsQuerySnapshot = await getDocs(bookingsQuery);
+
         const bookings: Booking.Info[] = [];
 
         bookingsQuerySnapshot.forEach((document) => {
-          bookings.push({
-            ...document.data(),
-            id: document.id,
-          } as Booking.Info);
+          const { startDate } = document.data() as Booking.Info;
+          if (startDate <= date!.end) {
+            bookings.push({
+              ...document.data(),
+              id: document.id,
+            } as Booking.Info);
+          }
         });
 
         const availableSpotsPerDay: number[] = [];
@@ -213,13 +217,15 @@ export default class HostService implements Host.Info {
         if (anyAvailableSpots) {
           const hostSnaphsot = await getDoc(hostRef);
 
-          if (availableHosts.every((host) => host.id !== hostSnaphsot.id))
+          if (availableHosts.every((host) => host.id !== hostSnaphsot.id)) {
+            availableHosts = _.cloneDeep(availableHosts);
             availableHosts.push({
               ...hostSnaphsot.data(),
               id: hostSnaphsot.id,
             } as Host.Info);
+          }
         }
-      });
+      }
 
       // returns results
       return availableHosts;
@@ -242,6 +248,7 @@ export default class HostService implements Host.Info {
       const hostSnapshot = await getDoc(hostRef);
       if (hostSnapshot.exists()) {
         const spacesSnapshot = await getDocs(spacesQuery);
+
         const host = {
           ...hostSnapshot.data(),
           id: hostSnapshot.id,
@@ -250,6 +257,7 @@ export default class HostService implements Host.Info {
         spacesSnapshot.forEach((space) => {
           host.spaces.push({ ...space.data(), id: space.id } as Host.Space);
         });
+
         return new HostService(host);
       }
       return null;
@@ -258,9 +266,8 @@ export default class HostService implements Host.Info {
     }
   }
 
-
   /**
-   * 
+   *
    * @returns a list of tags
    */
   public static async getAllTags() {
@@ -268,9 +275,9 @@ export default class HostService implements Host.Info {
       const hostsRef = collection(db, "host");
       const q = query(hostsRef, where("tags", "!=", []));
       const querySnapshot = await getDocs(q);
-      let tags: Host.Info['tags'] = [];
+      let tags: Host.Info["tags"] = [];
 
-      querySnapshot.forEach(snap => {
+      querySnapshot.forEach((snap) => {
         const host = snap.data() as Host.Info;
         tags = [...tags, ...host.tags];
       });

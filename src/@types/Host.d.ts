@@ -1,4 +1,5 @@
 import { UserInfo } from "firebase/auth";
+import { DocumentReference } from "firebase/firestore";
 
 
 export namespace Host {
@@ -34,13 +35,13 @@ export namespace Host {
   interface Space {
     type: string;
     description: string;
-    spots: 10;
+    spots: number;
     rateType: RateType;
     price: number;
     currency: string;
-    services: string[];
+    optionals: string[];
     images: string[];
-    host: string;
+    host: DocumentReference;
     id: string;
   }
 

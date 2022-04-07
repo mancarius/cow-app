@@ -1,8 +1,9 @@
 import * as React from "react";
 import './HostContact.css';
-import { Box, Button, Stack } from "@mui/material";
+import { Box } from "@mui/material";
+import { Host } from "../../@types/Host";
 
-const HostContact: React.FC = () => {
+const HostContact: React.FC<{ contact: Host.Contact }> = ({contact}) => {
     
   return (
     
@@ -10,8 +11,8 @@ const HostContact: React.FC = () => {
       <Box className="HostContact">
         <h2>Locations Contact</h2>
         <Box className="HostContact_box">
-            <p>info@mindlounge.com</p>
-            <p>+00 1234567890</p>
+        <p>{ contact.email}</p>
+        <p>{contact.phoneNumber}</p>
         </Box>
       </Box>
 

@@ -15,7 +15,7 @@ export namespace Booking {
     id: string;
   }
 
-  enum Status {
+  export enum Status {
     pending = "pending", // in attesa accettazione host
     confirmed = "confirmed", // confermata dall'host
     canceled = "canceled", // cancellata dal cliente
