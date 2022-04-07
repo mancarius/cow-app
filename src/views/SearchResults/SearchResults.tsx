@@ -2,6 +2,7 @@ import { useEffect, Fragment, useState } from "react";
 import "./SearchResults.css";
 import PrenotationSearch from "../../components/PrenotationSearch/PrenotationSearch";
 import ResultCard from "../../components/ResultCard/ResultCard";
+import MobileFilter from "../../components/MobileFilter/MobileFilter";
 import { useSearchParams } from "react-router-dom";
 import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
@@ -54,6 +55,8 @@ const SearchResults: React.FC = () => {
         <Stack className="viewMap">
           {/*<Button variant="text">Visualiza su mappa</Button>*/}
         </Stack>
+
+        <MobileFilter></MobileFilter>
 
         <Box className="sr_container">
           <div className="ps_container">

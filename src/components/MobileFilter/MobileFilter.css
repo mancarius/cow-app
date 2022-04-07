@@ -1,0 +1,59 @@
+
+.MobileFilter{
+    display: none;
+}
+
+@media only screen and (max-width: 821px) {
+
+    .MobileFilter{
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    .MobileFilter_box1{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .MobileFilter_box1_box{
+        display: flex;
+        align-items: center;
+    }
+
+    .box_button_back{
+        color: black;
+    }
+    .box_button_map{
+        color: black;
+        text-transform: none;
+        text-decoration: underline;
+        font-weight: bold;
+    }
+
+
+    .MobileFilter_box2{
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        margin-bottom: 40px;
+    }
+
+    .MobileFilter_box2_box button{
+        text-transform: none;
+        color: black;
+        border: 2px solid #5CC0BA;
+        border-radius: 30px;
+        margin-right: 5px;
+        height: 35px;
+    }
+
+    .box_button_filters{
+        text-transform: none;
+        color: black;
+        background-color: #5CC0BA;
+        border-radius: 30px;
+        height: 35px;
+
+    }
+}
