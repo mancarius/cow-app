@@ -29,13 +29,18 @@ const db = getFirestore(app);
 const analytics = getAnalytics(app);
 logEvent(analytics, "notification_received");
 
-const initAuth = async () => {
-  await setPersistence(auth, browserLocalPersistence);
+const initAuth = () => {
   const googleProvider = new GoogleAuthProvider();
   const facebookProvider = new FacebookAuthProvider();
   return [
-    () => signInWithPopup(auth, googleProvider),
-    () => signInWithPopup(auth, facebookProvider),
+    async () => {
+      await setPersistence(auth, browserLocalPersistence);
+      return await signInWithPopup(auth, googleProvider);
+    },
+    async () => {
+      await setPersistence(auth, browserLocalPersistence);
+      return await signInWithPopup(auth, facebookProvider);
+    },
   ];
 };
 
@@ -43,6 +48,6 @@ const logout = () => {
   signOut(auth);
 };
 
-const [signInWithGoogle, signInWithFacebook] = await initAuth();
+const [signInWithGoogle, signInWithFacebook] = initAuth();
 
 export { auth, db, signInWithGoogle, signInWithFacebook, logout };
