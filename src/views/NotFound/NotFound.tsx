@@ -1,7 +1,7 @@
 import { Box, Button, Container, Grid, Typography } from '@mui/material'
 import "./NotFound.css"
 
-const backgroundImage = "../../../assets/404.png";
+const backgroundImage = "../../../assets/404PAGE.jpg";
 
 const NotFound: React.FC = () => {
     
