@@ -185,10 +185,10 @@ export default function Footer() {
               <Box component="a" href="https://instagram.com/" sx={iconStyle}>
                 <InstagramIcon sx={{ color: "black", fontSize: 30 }} />
               </Box>
-              <Box component="a" href="https://youtube.com/" sx={iconStyle}>
+              <Box component="a" href="https://twitter.com/" sx={iconStyle}>
                 <TwitterIcon sx={{ color: "black", fontSize: 30 }} />
               </Box>
-              <Box component="a" href="https://youtube.com/" sx={iconStyle}>
+              <Box component="a" href="https://linkedin.com/" sx={iconStyle}>
                 <LinkedInIcon sx={{ color: "black", fontSize: 30 }} />
               </Box>
             </Grid>

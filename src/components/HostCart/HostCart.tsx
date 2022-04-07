@@ -5,7 +5,7 @@ import { Host } from "../../@types/Host";
 
 const HostCart: React.FC<{
   book: Pick<Host.Space, "price" | "currency" | "type"> & { spots: number };
-}> = ({ book }) => {
+  }> = ({ book }) => {
 
   return (
     <Box className="HostCart">

@@ -59,8 +59,7 @@ function FeatureContent() {
       {/* End Title */}
       <Container maxWidth="xl" sx={{ pb: 6 }}>
         <Grid container spacing={12}>
-          {features.map((feature) => (
-            // Enterprise card is full width at sm breakpoint
+
             <Grid
               item
               xs={12}
@@ -72,14 +71,15 @@ function FeatureContent() {
                 alignItems: "center",
               }}
             >
-              <Avatar
-                style={{
-                  width: "200px",
-                  height: "200px",
+              <Box
+                component="img"
+                sx={{
+                  height: 233,
+                  maxHeight: { xs: 233, md: 167 },
                 }}
-              >
-                <FolderIcon />
-              </Avatar>
+                alt="How it works for."
+                src="../../assets/how-it-works-customers.png"
+              />
               <Typography
                 mt={5}
                 component="h5"
@@ -88,10 +88,102 @@ function FeatureContent() {
                 color="text.primary"
                 gutterBottom
               >
-                {feature.description}
+                If you are a customer:
+              </Typography>
+              <Typography
+                mt={5}
+                component="h5"
+                variant="h5"
+                align="center"
+                color="text.primary"
+                gutterBottom
+              >
+                1. Register with Facebook, Google or e-mail
+              </Typography>
+              <Typography
+                mt={5}
+                component="h5"
+                variant="h5"
+                align="center"
+                color="text.primary"
+                gutterBottom
+              >
+                2. Go to the booking page and select your preferred day and time
+              </Typography>
+              <Typography
+                mt={5}
+                component="h5"
+                variant="h5"
+                align="center"
+                color="text.primary"
+                gutterBottom
+              >
+                3. Choose from the available options and enjoy your stay!
               </Typography>
             </Grid>
-          ))}
+
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={6}
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <Box
+                component="img"
+                sx={{
+                  height: 233,
+                  maxHeight: { xs: 233, md: 167 },
+                }}
+                alt="How it works for."
+                src="../../assets/how-it-works-host.png"
+              />
+              <Typography
+                mt={5}
+                component="h5"
+                variant="h5"
+                align="center"
+                color="text.primary"
+                gutterBottom
+              >
+                If you want to list your property:
+              </Typography>
+              <Typography
+                mt={5}
+                component="h5"
+                variant="h5"
+                align="center"
+                color="text.primary"
+                gutterBottom
+              >
+                1. Register with your company e-mail, Google or e-mail
+              </Typography>
+              <Typography
+                mt={5}
+                component="h5"
+                variant="h5"
+                align="center"
+                color="text.primary"
+                gutterBottom
+              >
+                2. Enter the information about your coworking space
+              </Typography>
+              <Typography
+                mt={5}
+                component="h5"
+                variant="h5"
+                align="center"
+                color="text.primary"
+                gutterBottom
+              >
+                3. Get ready to offer an unforgettable stay to your guests!
+              </Typography>
+            </Grid>
+          
         </Grid>
       </Container>
     </React.Fragment>

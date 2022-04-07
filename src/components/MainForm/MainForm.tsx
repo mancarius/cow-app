@@ -30,8 +30,8 @@ export default function SignUp() {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        bgcolor: "#F1EFEF",
         borderRadius: "15px",
+        backgroundColor: "rgba( 241, 239, 239, 0.75)"
       }}
     >
       <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
