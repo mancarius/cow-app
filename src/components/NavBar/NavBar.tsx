@@ -61,7 +61,7 @@ const NavBar = () => {
 
   return (
     /* Problems position fixed with search result */
-    <AppBar elevation={0} sx={{ backgroundColor: "white"}} position="static">
+    <AppBar elevation={0} sx={{ backgroundColor: "rgba(255, 255, 255, 0)"}} position="static">
       <Container
         maxWidth="xxl"
         sx={{
