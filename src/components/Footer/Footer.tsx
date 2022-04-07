@@ -9,6 +9,7 @@ import FacebookTwoToneIcon from '@mui/icons-material/FacebookTwoTone';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import "./Footer.css";
 
 import InstagramIcon from "@mui/icons-material/Instagram";
 
@@ -64,6 +65,7 @@ export default function Footer() {
   const classes = useStyles();
 
   return (
+    <>
     <Box
       component="footer"
       sx={{
@@ -193,21 +195,26 @@ export default function Footer() {
               </Box>
             </Grid>
           </Grid>
-          <Grid xs={12} item sx={{ bgcolor: "#5CC0BA", mt: 10 }}>
-            <Box 
-              display="flex" 
-              alignItems="center"
-              justifyContent="flex-start"
-              paddingY="25px"
-              sx={{ marginLeft: 5 }}
-            >
-              <Typography variant="caption" sx={{ color: "black"}}>
-                  © 2022
-              </Typography>
-            </Box>
-          </Grid>
+          
         </Grid>
+
+
       </Container>
+      
     </Box>
+    <Box className="Footer_footer" sx={{ bgcolor: "#5CC0BA" }}>
+    <Box 
+      display="flex" 
+      alignItems="center"
+      justifyContent="center"
+      paddingY="25px"
+    >
+      <Typography variant="caption" sx={{ color: "black"}}>
+          © 2022
+      </Typography>
+    </Box>
+  </Box>
+
+  </>
   );
 }
