@@ -31,13 +31,17 @@
 }
 
 .ps_search_box input{
-    width: 180px;
+    width: 170px;
     font-size: 14px;
     color: gray;
     border: none;
     
     outline: none;
     
+}
+
+.ps_search_box svg{
+    color: gray;
 }
 
 .ps_filter button{

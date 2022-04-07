@@ -2,6 +2,9 @@ import * as React from "react";
 import './HostDate.css';
 import { Box, Stack } from "@mui/material";
 
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+
 const HostDate: React.FC = () => {
     
   return (
@@ -14,6 +17,7 @@ const HostDate: React.FC = () => {
                 <p>When?</p>
                 <span>
                     <input type="text" value="7 Apr 2021" />
+                    <CalendarMonthIcon></CalendarMonthIcon>
                 </span>
             </Stack>
 
@@ -21,6 +25,7 @@ const HostDate: React.FC = () => {
                 <p>What time?</p>
                 <span>
                     <input type="text" value="09:00 - 18:00" />
+                    <AccessTimeIcon></AccessTimeIcon>
                 </span>
             </Stack>
         </Box>
