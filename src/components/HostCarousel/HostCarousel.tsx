@@ -3,6 +3,13 @@ import "./HostCarousel.css";
 import { Box, Button, ImageList, ImageListItem } from "@mui/material";
 import { Host } from "../../@types/Host";
 
+const image = "../../../assets/coworking.jpg";
+const coworking1 = "../../../assets/coworking1.jpg";
+const coworking2 = "../../../assets/coworking2.jpg";
+const coworking3 = "../../../assets/coworking3.jpg";
+const coworking4 = "../../../assets/coworking4.jpg";
+const coworking5 = "../../../assets/coworking5.jpg";
+
 const HostCarousel: React.FC<{images: Host.Info["images"]}> = (props) => {
   const { images } = props;
 
@@ -10,28 +17,28 @@ const HostCarousel: React.FC<{images: Host.Info["images"]}> = (props) => {
     <Box className="HostCarousel">
       <img
         className="fist_image"
-        src="https://source.unsplash.com/random"
+        src={coworking1}
         alt="unsplash image"
       />
       <Box className="other_image">
         <img
           className="image1"
-          src="https://source.unsplash.com/random"
+          src={coworking2}
           alt="unsplash image"
         />
         <img
           className="image2"
-          src="https://source.unsplash.com/random"
+          src={coworking3}
           alt="unsplash image"
         />
         <img
           className="image3"
-          src="https://source.unsplash.com/random"
+          src={coworking5}
           alt="unsplash image"
         />
         <div className="last_image">
           <Button className="last_image_button">altre foto...</Button>
-          <img src="https://source.unsplash.com/random" alt="unsplash image" />
+          <img src={coworking4} alt="unsplash image" />
         </div>
       </Box>
     </Box>
