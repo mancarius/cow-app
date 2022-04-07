@@ -8,7 +8,7 @@ function Home() {
     <React.Fragment>
       <Hero />
       <Feature />
-      <Carousel />
+      {/*<Carousel />*/}
     </React.Fragment>
   );
 }

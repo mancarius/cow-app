@@ -73,7 +73,7 @@ const NavBar = () => {
         }}
       >
         <Toolbar>
-          <Link href="./">
+          <Link href="/">
             <Box
               component="img"
               sx={{

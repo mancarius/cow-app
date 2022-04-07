@@ -45,7 +45,7 @@ const HostDetails: React.FC = () => {
       {host ? (
         <Box className="HostDetails">
           <Stack className="HostDetails_title" direction="row">
-            <Button className="HostDetails_back">
+            <Button className="HostDetails_back" onClick={()=>history.back()}>
               <ArrowBackIcon />
             </Button>
             <Typography variant="h3">{host.name}</Typography>

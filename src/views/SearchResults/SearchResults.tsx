@@ -48,13 +48,11 @@ const SearchResults: React.FC = () => {
         <Stack className="directory" direction="row">
           <Button variant="text">Homepage</Button>
           <ArrowForwardIosIcon />
-          <Button variant="text">Piemonte</Button>
-          <ArrowForwardIosIcon />
           <Button variant="text">Ricerca</Button>
         </Stack>
 
         <Stack className="viewMap">
-          <Button variant="text">Visualiza su mappa</Button>
+          {/*<Button variant="text">Visualiza su mappa</Button>*/}
         </Stack>
 
         <Box className="sr_container">
