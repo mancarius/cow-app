@@ -79,7 +79,7 @@ function CarouselContent() {
                 alignItems: "center",
               }}
             >
-              <ResultCard />
+              {/*<ResultCard host={} />*/}
             </Grid>
           ))}
         </Grid>

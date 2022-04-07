@@ -10,7 +10,10 @@ export function getWeekDayName(
   }) as keyof Host.OpeningDays;
 }
 
-export function getDaysArray(start: string | number, end: string | number): string[] {
+export function getDaysArray(
+  start: string | number,
+  end: string | number
+): string[] {
   for (
     var arr = [], dt = new Date(start);
     dt <= new Date(end);
@@ -21,8 +24,12 @@ export function getDaysArray(start: string | number, end: string | number): stri
   return arr;
 }
 
-
-export function isRequiredSlotCompatibleWithOpeningTime(day: string, timeSlot: Host.Filters["timeSlot"], openingDays: Host.OpeningDays) {
+export function isRequiredSlotCompatibleWithOpeningTime(
+  day: string,
+  timeSlot: Host.Filters["timeSlot"],
+  openingDays: Host.OpeningDays
+) {
+  if (!timeSlot) return true;
   const { start: timeStart, end: timeEnd } = timeSlot;
   const openingTimes: Host.OpeningTimes[] =
     openingDays[getWeekDayName(day, "it-IT")];
@@ -39,19 +46,11 @@ export function isRequiredSlotCompatibleWithOpeningTime(day: string, timeSlot: H
   );
 }
 
-
-
-
 export function isRequiredSlotAvailable(
   day: string,
   timeSlot: Host.Filters["timeSlot"],
   bookedSlot: Host.OpeningDays
-) {
-  
-}
-
-
-
+) {}
 
 export function StringToDateTime(date: string, time: string) {
   const splittedTime = time.split(":").map((s) => parseInt(s));
