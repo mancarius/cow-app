@@ -49,6 +49,10 @@
     
 }
 
+.HostDate_stack svg{
+    color: gray;
+}
+
 @media only screen and (max-width: 921px) {
 
     .HostDate{
