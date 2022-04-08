@@ -1,7 +1,6 @@
-import { Box, Button, Container, Grid, Typography } from '@mui/material'
+import { Box, Button, Grid, Typography } from '@mui/material'
 import "./NotFound.css"
-
-const backgroundImage = "../../../assets/404PAGE.jpg";
+import backgroundImage from "../../assets/404PAGE.jpg";
 
 const NotFound: React.FC = () => {
     
@@ -37,7 +36,8 @@ const NotFound: React.FC = () => {
                   type="submit"
                   fullWidth
                   variant="contained"
-                  size="large"
+              size="large"
+              onClick={() => history.back()}
                   sx={{
                     mt: 1,
                     mb: 1,

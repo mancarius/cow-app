@@ -1,7 +1,6 @@
-import { useEffect, useState, Fragment } from "react";
+import { useEffect, useState, Fragment, memo } from "react";
 import { useParams } from "react-router-dom";
 import HostService from "../../service/host.service";
-
 import "./HostDetails.css";
 import HostCarousel from "../../components/HostCarousel/HostCarousel";
 import HostOrder from "../../components/HostOrder/HostOrder";
@@ -9,11 +8,11 @@ import HostCarouselFooter from "../../components/HostCarouselFooter/HostCarousel
 import HostDate from "../../components/HostDate/HostDate";
 import HostCart from "../../components/HostCart/HostCart";
 import HostContact from "../../components/HostContact/HostContact";
-import { Box, Button, Stack, Typography } from "@mui/material";
+import { Box, Button, CircularProgress, Stack, Typography } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Host } from "../../@types/Host";
 
-const HostDetails: React.FC = () => {
+const HostDetails: React.FC = memo(() => {
   const [host, setHost] = useState<HostService | null>(null);
   const [book, setBook] = useState<
     Pick<Host.Space, "price" | "currency" | "type" | "id"> & { spots: number }
@@ -26,13 +25,12 @@ const HostDetails: React.FC = () => {
   });
   const { id } = useParams();
 
-  // {host ? ( ... ) : <h2>Loading...</h2>}  ---- {host.name}
-
   useEffect(() => {
     if (id) {
       HostService.findById(id)
         .then((instance) => {
           setHost(instance);
+          console.log(instance?.images);
         })
         .catch((error) => {
           console.log(error);
@@ -45,13 +43,12 @@ const HostDetails: React.FC = () => {
       {host ? (
         <Box className="HostDetails">
           <Stack className="HostDetails_title" direction="row">
-            <Button className="HostDetails_back" onClick={()=>history.back()}>
+            <Button className="HostDetails_back" onClick={() => history.back()}>
               <ArrowBackIcon />
             </Button>
             <Typography variant="h3">{host.name}</Typography>
           </Stack>
-
-          <HostCarousel images={host.images}></HostCarousel>
+          <HostCarousel images={host.images} />
           <HostCarouselFooter
             tags={host.tags}
             address={host.address}
@@ -59,16 +56,26 @@ const HostDetails: React.FC = () => {
           <HostDate></HostDate>
           <Box className="HostDetails_order">
             <HostOrder spaces={host.spaces} setBook={setBook}></HostOrder>
-            {book.spots && <HostCart book={book}></HostCart>}
+            {!!book.spots && <HostCart book={book}></HostCart>}
           </Box>
 
           <HostContact contact={host.contact}></HostContact>
         </Box>
       ) : (
-        ""
+        <Box
+          sx={{
+            height: "50vh",
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <CircularProgress />
+        </Box>
       )}
     </Fragment>
   );
-};
+});
 
 export default HostDetails;

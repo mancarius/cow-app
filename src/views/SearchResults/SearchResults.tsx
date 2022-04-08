@@ -3,8 +3,16 @@ import "./SearchResults.css";
 import PrenotationSearch from "../../components/PrenotationSearch/PrenotationSearch";
 import ResultCard from "../../components/ResultCard/ResultCard";
 import MobileFilter from "../../components/MobileFilter/MobileFilter";
-import { useSearchParams } from "react-router-dom";
-import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import {
+  Box,
+  Button,
+  CircularProgress,
+  Container,
+  Grid,
+  Stack,
+  Typography,
+} from "@mui/material";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { Host } from "../../@types/Host";
 import { useAppDispatch } from "../../store";
@@ -14,6 +22,7 @@ import { RootState } from "../../store";
 
 const SearchResults: React.FC = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const [searchParams, setSearchPArams] = useSearchParams();
   const { hosts, status } = useSelector((state: RootState) => state.hosts);
 
@@ -47,9 +56,13 @@ const SearchResults: React.FC = () => {
     <Fragment>
       <Box className="searchResultPage">
         <Stack className="directory" direction="row">
-          <Button variant="text">Homepage</Button>
+          <Button variant="text" onClick={() => navigate("/")}>
+            Homepage
+          </Button>
           <ArrowForwardIosIcon />
-          <Button variant="text">Ricerca</Button>
+          <Button variant="text" disabled>
+            Ricerca
+          </Button>
         </Stack>
 
         <Stack className="viewMap">
@@ -62,9 +75,37 @@ const SearchResults: React.FC = () => {
           <div className="ps_container">
             <PrenotationSearch />
           </div>
-          <Box className="myCardContainer">
-            {hosts.length ? hosts.map((host) => <ResultCard host={host} key={host.id} />) : ""}
-          </Box>
+          {status === "failed" && (
+            <Typography>
+              No host found with this filters. Please try with different
+              filters.
+            </Typography>
+          )}
+          {status === "loading" && (
+            <Box
+              sx={{
+                height: "50vh",
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <CircularProgress />
+            </Box>
+          )}
+          {status === "idle" && (
+            <Box className="myCardContainer">
+              {hosts.length ? (
+                hosts.map((host) => <ResultCard host={host} key={host.id} />)
+              ) : (
+                <Typography>
+                  No host found with this filters. Please try with different
+                  filters.
+                </Typography>
+              )}
+            </Box>
+          )}
         </Box>
       </Box>
     </Fragment>

@@ -5,14 +5,14 @@ import Link from "@mui/material/Link";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 //import TextField from "@mui/material/TextField";
-import FacebookTwoToneIcon from '@mui/icons-material/FacebookTwoTone';
-import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import FacebookTwoToneIcon from "@mui/icons-material/FacebookTwoTone";
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import "./Footer.css";
+import logoSmall from "../../assets/logo-small.png";
 
 import InstagramIcon from "@mui/icons-material/Instagram";
-
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -66,67 +66,77 @@ export default function Footer() {
 
   return (
     <>
-    <Box
-      component="footer"
-      sx={{
-        display: "flex",
-        bgcolor: "#A1E8E3",
-        borderRadius: "30px 30px 0px 0px",
-        
-      }}
-    >
-      <Container 
-        sx={{ 
-          my: 8, 
-          mb: 0, 
+      <Box
+        component="footer"
+        sx={{
           display: "flex",
-          flexDirection: { xs: "column", sm: "row"}
-        }} disableGutters={true}>
-        <Grid container spacing={0} justifyContent="space-around">
-          <Grid item xs={12} sm={4} md={2} sx={{marginX: { xs: 6, sm: 0 }}}>
-            <Grid
-              container
-              direction="column"
-              spacing={2}
-              sx={{ 
-                height: { xs: 200, sm: 120 },
-                justifyContent: {xs: "flex-start", sm: "flex-end"} 
-              }}
-            >
-              <Grid item sx={{ display: "flex" }}>
-                <Box
-                  component="img"
-                  sx={{
-                    width: 120,
-                  }}
-                  alt="Your logo."
-                  src="../../../assets/logo-small.png"
-                />
+          bgcolor: "#A1E8E3",
+          borderRadius: "30px 30px 0px 0px",
+        }}
+      >
+        <Container
+          sx={{
+            my: 8,
+            mb: 0,
+            display: "flex",
+            flexDirection: { xs: "column", sm: "row" },
+          }}
+          disableGutters={true}
+        >
+          <Grid container spacing={0} justifyContent="space-around">
+            <Grid item xs={12} sm={4} md={2} sx={{ marginX: { xs: 6, sm: 0 } }}>
+              <Grid
+                container
+                direction="column"
+                spacing={2}
+                sx={{
+                  height: { xs: 200, sm: 120 },
+                  justifyContent: { xs: "flex-start", sm: "flex-end" },
+                }}
+              >
+                <Grid item sx={{ display: "flex" }}>
+                  <Box
+                    component="img"
+                    sx={{
+                      width: 120,
+                    }}
+                    alt="Cow"
+                    src={logoSmall}
+                  />
+                </Grid>
               </Grid>
             </Grid>
-          </Grid>
-          <Grid item xs={12} sm={4} md={2} sx={{ 
-            marginX: { xs: 6, sm: 0 },
-            marginBottom: 10, 
-          }}
+            <Grid
+              item
+              xs={12}
+              sm={4}
+              md={2}
+              sx={{
+                marginX: { xs: 6, sm: 0 },
+                marginBottom: 10,
+              }}
             >
-            <Typography
-              sx={{ color: "black" }}
-              variant="h6"
-              gutterBottom
-              component="div"
-            >
-              Contacts
-            </Typography>
-            <Box component="ul" sx={{ m: 0, listStyle: "none", p: 0 }}>
-              <Box component="li" sx={{ py: 0.5 }}>
-                <Typography sx={{ color: "black" }}>
-                  made with <FavoriteBorderOutlinedIcon sx={{ color: "white", fontSize: 15 }}/> by iPee(rs) team.
-                </Typography>
+              <Typography
+                sx={{ color: "black" }}
+                variant="h6"
+                gutterBottom
+                component="div"
+              >
+                Contacts
+              </Typography>
+              <Box component="ul" sx={{ m: 0, listStyle: "none", p: 0 }}>
+                <Box component="li" sx={{ py: 0.5 }}>
+                  <Typography sx={{ color: "black" }}>
+                    made with{" "}
+                    <FavoriteBorderOutlinedIcon
+                      sx={{ color: "white", fontSize: 15 }}
+                    />{" "}
+                    by iPee(rs) team.
+                  </Typography>
+                </Box>
               </Box>
-            </Box>
-          </Grid>
-          {/*<Grid item xs={6} sm={4} md={2} sx={{ display: { xs: 'none', sm: 'block' } }}>
+            </Grid>
+            {/*<Grid item xs={6} sm={4} md={2} sx={{ display: { xs: 'none', sm: 'block' } }}>
             <Typography
               sx={{ color: "black" }}
               variant="h6"
@@ -153,15 +163,17 @@ export default function Footer() {
               </Box> 
             </Box>
           </Grid>*/}
-          <Grid item xs={12} sm={12} md={2} sx={{ marginX: { xs: 12, sm: 0 } }}>
-            <Typography
-              sx={{ color: "black" }}
-              variant="h6"
-              component="div"
+            <Grid
+              item
+              xs={12}
+              sm={12}
+              md={2}
+              sx={{ marginX: { xs: 12, sm: 0 } }}
             >
-              Social
-            </Typography>
-             {/* <TextField
+              <Typography sx={{ color: "black" }} variant="h6" component="div">
+                Social
+              </Typography>
+              {/* <TextField
               className={classes.root}
               select
               size="medium"
@@ -180,41 +192,36 @@ export default function Footer() {
                 </option>
               ))}
             </TextField>  */}
-            <Grid item sx={{ display: "flex" }}>
-              <Box component="a" href="https://facebook.com/" sx={iconStyle}>
-                <FacebookTwoToneIcon sx={{ color: "black", fontSize: 30 }} />
-              </Box>
-              <Box component="a" href="https://instagram.com/" sx={iconStyle}>
-                <InstagramIcon sx={{ color: "black", fontSize: 30 }} />
-              </Box>
-              <Box component="a" href="https://twitter.com/" sx={iconStyle}>
-                <TwitterIcon sx={{ color: "black", fontSize: 30 }} />
-              </Box>
-              <Box component="a" href="https://linkedin.com/" sx={iconStyle}>
-                <LinkedInIcon sx={{ color: "black", fontSize: 30 }} />
-              </Box>
+              <Grid item sx={{ display: "flex" }}>
+                <Box component="a" href="https://facebook.com/" sx={iconStyle}>
+                  <FacebookTwoToneIcon sx={{ color: "black", fontSize: 30 }} />
+                </Box>
+                <Box component="a" href="https://instagram.com/" sx={iconStyle}>
+                  <InstagramIcon sx={{ color: "black", fontSize: 30 }} />
+                </Box>
+                <Box component="a" href="https://twitter.com/" sx={iconStyle}>
+                  <TwitterIcon sx={{ color: "black", fontSize: 30 }} />
+                </Box>
+                <Box component="a" href="https://linkedin.com/" sx={iconStyle}>
+                  <LinkedInIcon sx={{ color: "black", fontSize: 30 }} />
+                </Box>
+              </Grid>
             </Grid>
           </Grid>
-          
-        </Grid>
-
-
-      </Container>
-      
-    </Box>
-    <Box className="Footer_footer" sx={{ bgcolor: "#5CC0BA" }}>
-    <Box 
-      display="flex" 
-      alignItems="center"
-      justifyContent="center"
-      paddingY="25px"
-    >
-      <Typography variant="caption" sx={{ color: "black"}}>
-          © 2022
-      </Typography>
-    </Box>
-  </Box>
-
-  </>
+        </Container>
+      </Box>
+      <Box className="Footer_footer" sx={{ bgcolor: "#5CC0BA" }}>
+        <Box
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          paddingY="25px"
+        >
+          <Typography variant="caption" sx={{ color: "black" }}>
+            © 2022
+          </Typography>
+        </Box>
+      </Box>
+    </>
   );
 }
