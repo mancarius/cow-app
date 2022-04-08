@@ -1,16 +1,12 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import FolderIcon from "@mui/icons-material/Folder";
 import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
-import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import GlobalStyles from "@mui/material/GlobalStyles";
 import Container from "@mui/material/Container";
+import howItWorksFor_image from "../../assets/how-it-works-customers.png";
+import howItWorksHost_image from "../../assets/how-it-works-host.png";
 
 const features = [
   {
@@ -78,7 +74,7 @@ function FeatureContent() {
                   maxHeight: { xs: 233, md: 167 },
                 }}
                 alt="How it works for."
-                src="../../assets/how-it-works-customers.png"
+                src={howItWorksFor_image}
               />
               <Typography
                 mt={5}
@@ -140,7 +136,7 @@ function FeatureContent() {
                   maxHeight: { xs: 233, md: 167 },
                 }}
                 alt="How it works for."
-                src="../../assets/how-it-works-host.png"
+                src={howItWorksHost_image}
               />
               <Typography
                 mt={5}

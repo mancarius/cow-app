@@ -20,6 +20,9 @@ import {
 import { Host } from "../../@types/Host";
 import _ from "lodash";
 import HostService from "../../service/host.service";
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 function useQuery() {
   const { search } = useLocation();
@@ -119,6 +122,7 @@ function PrenotationSearch() {
               value={filters.address}
               onChange={handleAddress}
             />
+            <LocationOnIcon></LocationOnIcon>
           </span>
         </Stack>
         <Stack>
@@ -129,6 +133,7 @@ function PrenotationSearch() {
               value={filters.dateInterval}
               onChange={handleDateInterval}
             />
+            <CalendarMonthIcon></CalendarMonthIcon>
           </span>
         </Stack>
         <Stack>
@@ -139,6 +144,7 @@ function PrenotationSearch() {
               value={filters.timeInterval}
               onChange={handleTimeInterval}
             />
+            <AccessTimeIcon></AccessTimeIcon>
           </span>
         </Stack>
       </Box>

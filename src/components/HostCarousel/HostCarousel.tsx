@@ -1,37 +1,21 @@
 import * as React from "react";
 import "./HostCarousel.css";
-import { Box, Button, ImageList, ImageListItem } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { Host } from "../../@types/Host";
 
 const HostCarousel: React.FC<{images: Host.Info["images"]}> = (props) => {
   const { images } = props;
+  console.log([...images]);
 
   return (
     <Box className="HostCarousel">
-      <img
-        className="fist_image"
-        src="https://source.unsplash.com/random"
-        alt="unsplash image"
-      />
+      <img className="fist_image" src={[...images].shift() ?? ''} alt="unsplash image" />
       <Box className="other_image">
-        <img
-          className="image1"
-          src="https://source.unsplash.com/random"
-          alt="unsplash image"
-        />
-        <img
-          className="image2"
-          src="https://source.unsplash.com/random"
-          alt="unsplash image"
-        />
-        <img
-          className="image3"
-          src="https://source.unsplash.com/random"
-          alt="unsplash image"
-        />
+        {[...images].slice(0,3)?.map((img, index) => (
+          <img className={`image${index + 1}`} src={img} alt="unsplash image" />
+        )) ?? []}
         <div className="last_image">
           <Button className="last_image_button">altre foto...</Button>
-          <img src="https://source.unsplash.com/random" alt="unsplash image" />
         </div>
       </Box>
     </Box>

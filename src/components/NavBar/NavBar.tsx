@@ -12,19 +12,25 @@ import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-//import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
 import { Avatar } from "@mui/material";
-import { useSelector } from 'react-redux'
+import { useSelector } from "react-redux";
 import { RootState } from "../../store";
-import { useAppDispatch } from '../../store'
-import { customerLogout, requireAuth } from "../../store/features/customer/slice";
+import { useAppDispatch } from "../../store";
+import {
+  customerLogout,
+  requireAuth,
+} from "../../store/features/customer/slice";
+import logo from "../../assets/logo-full.png";
+import backgroundImage from "../../assets/bg-image-hero.jpg";
+import { useLocation } from "react-router-dom";
 
-
-const pages = ["About", "contacts"];
+const pages = [{ label: "About", path:"/about" }, { label: "contacts", path: "/contacts" }];
 const settings = ["Account", "Dashboard"];
 
 const NavBar = () => {
   const dispatch = useAppDispatch();
+  const location = useLocation();
+
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -36,19 +42,17 @@ const NavBar = () => {
   const handleCustomerLogout = async () => {
     const resultAction = await dispatch(customerLogout());
     if (customerLogout.fulfilled.match(resultAction)) {
-      handleCloseUserMenu()
+      handleCloseUserMenu();
     } else {
       alert("Impossible to sign out");
     }
-  }
+  };
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    customer
-      ? setAnchorElUser(event.currentTarget)
-      : dispatch(requireAuth());
+    customer ? setAnchorElUser(event.currentTarget) : dispatch(requireAuth());
   };
 
   const handleCloseNavMenu = () => {
@@ -59,14 +63,30 @@ const NavBar = () => {
     setAnchorElUser(null);
   };
 
+  const backgroundImgStyle = {
+    backgroundImage: `url(${backgroundImage})`,
+    backgroundAttachment: "fixed",
+    backgroundPosition: "top",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+  };
+
   return (
     /* Problems position fixed with search result */
-    <AppBar elevation={0} sx={{ backgroundColor: "white"}} position="static">
+    <AppBar
+      elevation={0}
+      sx={
+        location.pathname === "/"
+          ? backgroundImgStyle
+          : { backgroundColor: "rgba(255, 255, 255, 0)" }
+      }
+      position="static"
+    >
       <Container
         maxWidth="xl"
         sx={{
           m: "20px",
-          bgcolor: "#9BE3DE",
+          bgcolor: location.pathname === "/" ? "transparent" : "#9BE3DE",
           borderRadius: "30px",
           alignSelf: "center",
           width: "97%",
@@ -79,11 +99,11 @@ const NavBar = () => {
               sx={{
                 height: 84,
               }}
-              alt="Your logo."
-              src="../../../assets/logo-full.png"
+              alt="Cow Logo"
+              src={logo}
             />
           </Link>
-          
+
           <Box
             sx={{
               justifyContent: "flex-end",
@@ -120,8 +140,12 @@ const NavBar = () => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem key={page.path} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">
+                    <Link href={page.path} underline="none">
+                      {page.label}
+                    </Link>
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -143,7 +167,7 @@ const NavBar = () => {
           >
             {pages.map((page) => (
               <Button
-                key={page}
+                key={page.path}
                 onClick={handleCloseNavMenu}
                 sx={{
                   my: 2,
@@ -153,7 +177,9 @@ const NavBar = () => {
                   textTransform: "lowercase",
                 }}
               >
-                {page}
+                <Link href={page.path} underline="none" color="#333">
+                  {page.label}
+                </Link>
               </Button>
             ))}
           </Box>
@@ -197,14 +223,14 @@ const NavBar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title={customer ? "Open settings" : "Sign In"}>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                {
-                  customer?.uid
-                    ? <Avatar
-                        alt={customer.displayName || undefined}
-                        src={customer.photoURL || undefined}
-                        />
-                    : <PersonOutlineIcon sx={{ color: "black", fontSize: 30 }} />
-                }
+                {customer?.uid ? (
+                  <Avatar
+                    alt={customer.displayName || undefined}
+                    src={customer.photoURL || undefined}
+                  />
+                ) : (
+                  <PersonOutlineIcon sx={{ color: "black", fontSize: 30 }} />
+                )}
               </IconButton>
             </Tooltip>
             <Menu
@@ -230,9 +256,7 @@ const NavBar = () => {
                 </MenuItem>
               ))}
               <MenuItem onClick={handleCustomerLogout}>
-                <Typography textAlign="center">
-                  {"Logout"}
-                </Typography>
+                <Typography textAlign="center">{"Logout"}</Typography>
               </MenuItem>
             </Menu>
           </Box>

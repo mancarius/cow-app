@@ -11,10 +11,12 @@
 
 .HostContact_box{
     display: flex;
+    flex-wrap: wrap;
     margin-top: 20px;
 }
 
 .HostContact_box p{
     margin-right: 40px;
     font-size: 17px;
+    margin-top: 5px;
 }
