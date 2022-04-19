@@ -9,7 +9,7 @@ import {
   Checkbox,
 } from "@mui/material";
 import { useSearchParams, useLocation } from "react-router-dom";
-import {
+import React, {
   useState,
   ChangeEvent,
   useEffect,
@@ -20,9 +20,11 @@ import {
 import { Host } from "../../@types/Host";
 import _ from "lodash";
 import HostService from "../../service/host.service";
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import { Here } from "../../@types/Here";
+import LocationSearchInput from "../LocationSearchInput/LocationSearchInput";
 
 function useQuery() {
   const { search } = useLocation();
@@ -37,7 +39,7 @@ function useQuery() {
   }, [search]);
 }
 
-function PrenotationSearch() {
+const PrenotationSearch = React.memo(() => {
   const query = useQuery();
   const [searchParams, setSearchParams] = useSearchParams();
   const [filters, setfilters] = useState<Record<string, any>>({
@@ -50,7 +52,13 @@ function PrenotationSearch() {
     ...query,
   });
 
+  console.log({filters})
+
   const [tagList, setTagList] = useState<Host.Info["tags"]>([]);
+
+  useEffect(() => {
+    console.log({query});
+  }, [query]);
 
   useEffect(() => {
     HostService.getAllTags()
@@ -58,10 +66,10 @@ function PrenotationSearch() {
       .catch((error) => console.error(error));
   }, []);
 
-  function handleAddress({ target }: ChangeEvent<HTMLInputElement>) {
+  function setAddress(value: Here.Item["address"]["city"]) {
     setfilters((prevState) => ({
       ...prevState,
-      address: target.value,
+      address: value,
     }));
   }
 
@@ -116,18 +124,17 @@ function PrenotationSearch() {
       <Box className="ps_search_box">
         <Stack>
           <Typography variant="body1"> Dove? </Typography>
-          <span>
-            <input
-              type="text"
-              value={filters.address}
-              onChange={handleAddress}
+          <span className="box">
+            <LocationSearchInput
+              address={filters.address}
+              setAddress={setAddress}
             />
-            <LocationOnIcon></LocationOnIcon>
+            <LocationOnIcon />
           </span>
         </Stack>
         <Stack>
           <Typography variant="body1"> Quando? </Typography>
-          <span>
+          <span className="box">
             <input
               type="text"
               value={filters.dateInterval}
@@ -138,7 +145,7 @@ function PrenotationSearch() {
         </Stack>
         <Stack>
           <Typography variant="body1"> A che ora? </Typography>
-          <span>
+          <span className="box">
             <input
               type="text"
               value={filters.timeInterval}
@@ -164,6 +171,6 @@ function PrenotationSearch() {
       </Stack>
     </Stack>
   );
-}
+});
 
 export default PrenotationSearch;
