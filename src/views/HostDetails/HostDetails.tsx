@@ -53,7 +53,6 @@ const HostDetails: React.FC = memo(() => {
             tags={host.tags}
             address={host.address}
           ></HostCarouselFooter>
-          <HostDate></HostDate>
           <Box className="HostDetails_order">
             <HostOrder spaces={host.spaces} setBook={setBook}></HostOrder>
             {!!book.spots && <HostCart book={book}></HostCart>}

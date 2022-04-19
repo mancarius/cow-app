@@ -83,7 +83,7 @@ export default function NavBar() {
       position="static"
     >
       <Container
-        maxWidth="xl"
+        maxWidth="xxl"
         sx={{
           m: "20px",
           bgcolor: location.pathname === "/" ? "transparent" : "#9BE3DE",

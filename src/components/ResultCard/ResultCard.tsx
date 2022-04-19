@@ -22,16 +22,16 @@ const ResultCard: React.FC<{ host: Host.SearchResult }> = React.memo(({ host }) 
     const navigate = useNavigate();
   const valutation = {
     score: parseFloat(getRandomNumberBetween(6, 9).toFixed(1)),
-    label: "Discreto",
+    label: "Decent",
     feedbacks: Math.round(getRandomNumberBetween(20, 100)),
   };
 
   if (valutation.score > 9.5) {
-    valutation.label = "Favoloso";
+    valutation.label = "Excellent";
   } else if (valutation.score > 8.5) {
-    valutation.label = "Ottimo";
+    valutation.label = "Great";
   } else if (valutation.score > 7.5) {
-    valutation.label = "Buono";
+    valutation.label = "Good";
   }
 
   return (
