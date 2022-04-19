@@ -59,7 +59,6 @@ const LocationSearchInput: React.FC<{
 
   React.useEffect(() => {
     const newValue = value?.address.city ?? "";
-    console.log({ address, newValue }, address !== newValue);
     address !== newValue && !isFirstRendering && setAddress(newValue);
   }, [value]);
 
