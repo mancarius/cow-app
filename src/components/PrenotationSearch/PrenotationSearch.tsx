@@ -119,11 +119,11 @@ const PrenotationSearch = React.memo(() => {
   return (
     <Stack className="prenotationSearch">
       <Typography variant="h4" className="ps_title">
-        Strutture: 78
+        Locations: 78
       </Typography>
       <Box className="ps_search_box">
         <Stack>
-          <Typography variant="body1"> Dove? </Typography>
+          <Typography variant="body1"> Where? </Typography>
           <span className="box">
             <LocationSearchInput
               address={filters.address}
@@ -133,7 +133,7 @@ const PrenotationSearch = React.memo(() => {
           </span>
         </Stack>
         <Stack>
-          <Typography variant="body1"> Quando? </Typography>
+          <Typography variant="body1"> When? </Typography>
           <span className="box">
             <input
               type="text"
@@ -144,7 +144,7 @@ const PrenotationSearch = React.memo(() => {
           </span>
         </Stack>
         <Stack>
-          <Typography variant="body1"> A che ora? </Typography>
+          <Typography variant="body1"> What time? </Typography>
           <span className="box">
             <input
               type="text"
@@ -156,7 +156,7 @@ const PrenotationSearch = React.memo(() => {
         </Stack>
       </Box>
       <Stack className="ps_filter">
-        <Button variant="text">Filtri</Button>
+        <Button variant="text">Filters</Button>
         <FormGroup>
           {tagList.map((tag) => (
             <FormControlLabel
