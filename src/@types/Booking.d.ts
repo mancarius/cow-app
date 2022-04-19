@@ -11,7 +11,7 @@ export namespace Booking {
       start: string;
       end: string;
     };
-    spotsNumber: number;
+    spotsCount: number;
     id: string;
   }
 
