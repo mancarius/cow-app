@@ -244,7 +244,7 @@ const HereApi: HereAPi = {
       throw e;
     }
 
-    const { items: localities } = result;
+    const localities = _.uniqBy(result.items, 'id');
     // ritorno risultato filtrato
     return this.filterBy(localities, _type)?.slice(0, _limit) || [];
   },
