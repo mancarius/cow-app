@@ -4,15 +4,15 @@ import Autocomplete from "@mui/material/Autocomplete";
 import CircularProgress from "@mui/material/CircularProgress";
 import HereApi from "../../service/here-api.service";
 import { Here } from "../../@types/Here";
-import { throttle } from "lodash";
-import './LocationSearchInput.css';
+import _, { throttle } from "lodash";
+import "./LocationSearchInput.css";
 
 const LocationSearchInput: React.FC<{
   name?: string;
   placeholder?: string;
   address: Here.Item["address"]["city"];
   setAddress: (address: Here.Item["address"]["city"]) => void;
-}> = ({ address, setAddress, placeholder = "", name }) => {
+}> = React.memo(({ address, setAddress, placeholder = "", name }) => {
   const [open, setOpen] = React.useState(false);
   const [options, setOptions] = React.useState<readonly Here.Item[]>([]);
   const [loading, setLoading] = React.useState(false);
@@ -26,7 +26,7 @@ const LocationSearchInput: React.FC<{
           request: { input: string },
           callback: (results: readonly Here.Item[]) => void
         ) => {
-          HereApi.autocomplete(request.input)
+          HereApi.autocomplete(request.input, 10, 'city')
             .then(callback)
             .catch((error) => console.warn(error));
         },
@@ -41,7 +41,7 @@ const LocationSearchInput: React.FC<{
     fetch({ input: inputValue }, (results: readonly Here.Item[]) => {
       if (active) {
         setLoading(false);
-        setOptions([...results]);
+        setOptions([..._.uniqBy(results, "address.city")]);
       }
     });
 
@@ -57,13 +57,13 @@ const LocationSearchInput: React.FC<{
   }, [open]);
 
   React.useEffect(() => {
-    setAddress(value?.address.city ?? '');
+    setAddress(value?.address.city ?? "");
   }, [value]);
 
   return (
     <Autocomplete
       id="locationSearchInput"
-      sx={{ width:"100%"}}
+      sx={{ width: "100%" }}
       open={open}
       onOpen={() => {
         setOpen(true);
@@ -79,8 +79,8 @@ const LocationSearchInput: React.FC<{
       }}
       value={value}
       inputValue={inputValue}
-      isOptionEqualToValue={(option, value) => option.title === value.title}
-      getOptionLabel={(option) => option.address.city}
+      isOptionEqualToValue={(option, value) => option.address.city === value.address.city}
+      getOptionLabel={(option) => option?.address.city ?? ""}
       options={options}
       loading={loading}
       renderInput={(params) => (
@@ -93,9 +93,7 @@ const LocationSearchInput: React.FC<{
             ...params.InputProps,
             endAdornment: (
               <React.Fragment>
-                {loading ? (
-                  <CircularProgress color="inherit" />
-                ) : null}
+                {loading ? <CircularProgress color="inherit" /> : null}
                 {params.InputProps.endAdornment}
               </React.Fragment>
             ),
@@ -104,6 +102,6 @@ const LocationSearchInput: React.FC<{
       )}
     />
   );
-};
+});
 
 export default LocationSearchInput;
