@@ -18,6 +18,7 @@ const LocationSearchInput: React.FC<{
   const [loading, setLoading] = React.useState(false);
   const [inputValue, setInputValue] = React.useState(address);
   const [value, setValue] = React.useState<Here.Item | null>(null);
+  const [isFirstRendering, setIsFirstRendering] = React.useState(true);
 
   const fetch = React.useMemo(
     () =>
@@ -26,13 +27,13 @@ const LocationSearchInput: React.FC<{
           request: { input: string },
           callback: (results: readonly Here.Item[]) => void
         ) => {
-          HereApi.autocomplete(request.input, 10, 'city')
+          HereApi.autocomplete(request.input, 10, "city")
             .then(callback)
             .catch((error) => console.warn(error));
         },
         200
       ),
-    []
+    [value]
   );
 
   React.useEffect(() => {
@@ -57,8 +58,14 @@ const LocationSearchInput: React.FC<{
   }, [open]);
 
   React.useEffect(() => {
-    setAddress(value?.address.city ?? "");
+    const newValue = value?.address.city ?? "";
+    console.log({ address, newValue }, address !== newValue);
+    address !== newValue && !isFirstRendering && setAddress(newValue);
   }, [value]);
+
+  React.useEffect(() => {
+    setIsFirstRendering(false);
+  }, []);
 
   return (
     <Autocomplete

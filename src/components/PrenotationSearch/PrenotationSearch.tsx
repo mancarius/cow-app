@@ -3,132 +3,49 @@ import {
   Box,
   Stack,
   Typography,
-  FormControlLabel,
-  Button,
   FormGroup,
-  Checkbox,
 } from "@mui/material";
-import { useSearchParams, useLocation } from "react-router-dom";
-import React, {
-  useState,
-  ChangeEvent,
-  useEffect,
-  useCallback,
-  SyntheticEvent,
-  useMemo,
-} from "react";
-import { Host } from "../../@types/Host";
+import { useSearchParams } from "react-router-dom";
+import React, { useState, useEffect, useCallback } from "react";
 import _ from "lodash";
-import HostService from "../../service/host.service";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import { Here } from "../../@types/Here";
 import LocationSearchInput from "../LocationSearchInput/LocationSearchInput";
-
-function useQuery() {
-  const { search } = useLocation();
-
-  return useMemo(() => {
-    const searchParams = new URLSearchParams(search);
-    const data: Record<string, string> = {};
-    searchParams.forEach((value, key) => {
-      typeof value === "string" && (data[key] = value);
-    });
-    return data;
-  }, [search]);
-}
+import FilterTagList from "../FilterTagList/FilterTagList";
 
 const PrenotationSearch = React.memo(() => {
-  const query = useQuery();
   const [searchParams, setSearchParams] = useSearchParams();
-  const [filters, setfilters] = useState<Record<string, any>>({
-    ...{
-      address: "",
-      dateInterval: "",
-      timeInterval: "",
-      tags: [],
-    },
-    ...query,
-  });
-
-  console.log({filters})
-
-  const [tagList, setTagList] = useState<Host.Info["tags"]>([]);
-
-  useEffect(() => {
-    console.log({query});
-  }, [query]);
-
-  useEffect(() => {
-    HostService.getAllTags()
-      .then((tags) => setTagList(tags))
-      .catch((error) => console.error(error));
-  }, []);
-
-  function setAddress(value: Here.Item["address"]["city"]) {
-    setfilters((prevState) => ({
-      ...prevState,
-      address: value,
-    }));
-  }
-
-  function handleDateInterval({ target }: ChangeEvent<HTMLInputElement>) {
-    setfilters((prevState) => ({
-      ...prevState,
-      dateIntervall: target.value,
-    }));
-  }
-
-  function handleTimeInterval({ target }: ChangeEvent<HTMLInputElement>) {
-    setfilters((prevState) => ({
-      ...prevState,
-      timeInterval: target.value,
-    }));
-  }
-
-  function handleTag(tag: string) {
-    return (e: SyntheticEvent<Element, Event>, checked: boolean) => {
-      setfilters((prevState) => {
-        if (checked) {
-          return {
-            ...prevState,
-            tags: [...prevState.tags, tag],
-          };
-        } else {
-          return {
-            ...prevState,
-            tags: prevState.tags.filter((t: string) => t !== tag),
-          };
-        }
-      });
-    };
-  }
+  const [address, setAddress] = useState<string>(
+    searchParams.get("address") || ""
+  );
+  const [dateInterval, setDateInterval] = useState<string>(
+    searchParams.get("dateInterval") || ""
+  );
+  const [timeInterval, setTimeInterval] = useState<string>(
+    searchParams.get("timeInterval") || ""
+  );
+  const [tags, setTags] = useState<string[]>(searchParams.getAll("tags"));
 
   const debouncedFilters = useCallback(
-    _.debounce((filters: Record<string, any>) => {
-      setSearchParams(filters);
+    _.debounce(() => {
+      console.log({ address, dateInterval, timeInterval, tags });
+      setSearchParams({ address, dateInterval, timeInterval, tags });
     }, 1000),
-    []
+    [address, dateInterval, timeInterval, tags]
   );
 
   useEffect(() => {
-    debouncedFilters(filters);
-  }, [filters]);
+    debouncedFilters();
+  }, [address, dateInterval, timeInterval, tags]);
 
   return (
     <Stack className="prenotationSearch">
-      <Typography variant="h4" className="ps_title">
-        Strutture: 78
-      </Typography>
       <Box className="ps_search_box">
         <Stack>
           <Typography variant="body1"> Dove? </Typography>
           <span className="box">
-            <LocationSearchInput
-              address={filters.address}
-              setAddress={setAddress}
-            />
+            <LocationSearchInput address={address} setAddress={setAddress} />
             <LocationOnIcon />
           </span>
         </Stack>
@@ -137,8 +54,8 @@ const PrenotationSearch = React.memo(() => {
           <span className="box">
             <input
               type="text"
-              value={filters.dateInterval}
-              onChange={handleDateInterval}
+              value={dateInterval}
+              onChange={(e) => setDateInterval(e.target.value)}
             />
             <CalendarMonthIcon></CalendarMonthIcon>
           </span>
@@ -148,25 +65,17 @@ const PrenotationSearch = React.memo(() => {
           <span className="box">
             <input
               type="text"
-              value={filters.timeInterval}
-              onChange={handleTimeInterval}
+              value={timeInterval}
+              onChange={(e) => setTimeInterval(e.target.value)}
             />
             <AccessTimeIcon></AccessTimeIcon>
           </span>
         </Stack>
       </Box>
       <Stack className="ps_filter">
-        <Button variant="text">Filtri</Button>
+        <Typography variant="h6">Filtri</Typography>
         <FormGroup>
-          {tagList.map((tag) => (
-            <FormControlLabel
-              control={<Checkbox />}
-              label={tag}
-              checked={[filters.tags].flat().some((t: string) => t === tag)}
-              onChange={handleTag(tag)}
-              key={tag}
-            />
-          ))}
+          <FilterTagList tags={tags} setTags={setTags} />
         </FormGroup>
       </Stack>
     </Stack>

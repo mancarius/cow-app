@@ -1,4 +1,4 @@
-import { useEffect, Fragment, useState } from "react";
+import React, { useEffect, Fragment, useState } from "react";
 import "./SearchResults.css";
 import PrenotationSearch from "../../components/PrenotationSearch/PrenotationSearch";
 import ResultCard from "../../components/ResultCard/ResultCard";
@@ -8,8 +8,6 @@ import {
   Box,
   Button,
   CircularProgress,
-  Container,
-  Grid,
   Stack,
   Typography,
 } from "@mui/material";
@@ -20,7 +18,7 @@ import { findHosts } from "../../store/features/host/slice";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 
-const SearchResults: React.FC = () => {
+const SearchResults: React.FC = React.memo(() => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [searchParams, setSearchPArams] = useSearchParams();
@@ -73,6 +71,9 @@ const SearchResults: React.FC = () => {
 
         <Box className="sr_container">
           <div className="ps_container">
+            <Typography variant="h4" className="ps_title">
+              Strutture: {hosts.length}
+            </Typography>
             <PrenotationSearch />
           </div>
           {status === "failed" && (
@@ -110,6 +111,6 @@ const SearchResults: React.FC = () => {
       </Box>
     </Fragment>
   );
-};
+});
 
 export default SearchResults;
