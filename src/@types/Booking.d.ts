@@ -3,8 +3,8 @@ import { Host } from "./Host";
 export namespace Booking {
   interface Info {
     status: Status;
-    host: Host.Info;
-    space: Host.Space;
+    host: Host.Info | Host.Info['id'];
+    space: Host.Space | Host.Space['id'];
     startDate: number;
     endDate: number;
     timeSlot: {
