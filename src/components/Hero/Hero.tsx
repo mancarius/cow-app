@@ -22,7 +22,7 @@ export default function Hero() {
       <Typography
         sx={{
           display: "flex",
-          height: "90vh",
+          minHeight: "90vh",
           backgroundImage: `url(${waveImage})`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
