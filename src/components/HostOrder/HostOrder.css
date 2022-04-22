@@ -9,7 +9,7 @@
 
     border-radius: 20px;
     box-shadow: rgba(0, 0, 0, 0.24) 3px 3px 8px;
-    margin-bottom: 20px;
+    margin-bottom: 80px;
 }
 
 .HostOrder_container{
@@ -25,8 +25,7 @@
 }
 
 .HostOrder_desc_box img{
-    width: 230px ;
-    max-height: 155px;
+    width: 300px ;
     border-radius: 20px;
     margin-right: 10%;
 }

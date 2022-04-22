@@ -73,7 +73,7 @@ const HostOrder: React.FC<{
             </Box>
           </Box>
 
-          <hr className="separator" />
+          {/*<hr className="separator" />*/}
         </React.Fragment>
       ))}
     </Box>
