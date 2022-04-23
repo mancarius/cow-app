@@ -27,7 +27,7 @@ import { useLocation } from "react-router-dom";
 const pages = [{ label: "About", path:"/about" }, { label: "contacts", path: "/contacts" }];
 const settings = ["Account", "Dashboard"];
 
-const NavBar = () => {
+export default function NavBar() {
   const dispatch = useAppDispatch();
   const location = useLocation();
 
@@ -83,7 +83,7 @@ const NavBar = () => {
       position="static"
     >
       <Container
-        maxWidth="xl"
+        maxWidth="xxl"
         sx={{
           m: "20px",
           bgcolor: location.pathname === "/" ? "transparent" : "#9BE3DE",
@@ -265,4 +265,3 @@ const NavBar = () => {
     </AppBar>
   );
 };
-export default NavBar;

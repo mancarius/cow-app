@@ -18,29 +18,29 @@
     padding-bottom: 5px;
 }
 
-.ps_search_box span{
+.ps_search_box span.box{
     width: 210px;
     height: 45px;
     display: flex;
+    flex-flow: row-reverse;
+    gap: 10px;
     align-items: center;
     padding-left: 15px;
+    padding-right: 15px;
     border: 2px solid rgb(198, 198, 198);
     border-radius: 30px;
-
     margin-bottom: 30px;
 }
 
-.ps_search_box input{
-    width: 170px;
+.ps_search_box span.box input {
+    width: 100%;
     font-size: 14px;
     color: gray;
     border: none;
-    
     outline: none;
-    
 }
 
-.ps_search_box svg{
+.ps_search_box span.box svg{
     color: gray;
 }
 

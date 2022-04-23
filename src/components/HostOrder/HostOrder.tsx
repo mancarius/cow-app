@@ -38,7 +38,7 @@ const HostOrder: React.FC<{
             <Box className="HostOrder_info_box">
               <Stack className="HostOrder_info">
                 <div className="HostOrder_info_div">
-                  <h4>Prezzo</h4>
+                  <h4>Price</h4>
                   <span>
                     <h3>
                       {space.price}
@@ -47,13 +47,13 @@ const HostOrder: React.FC<{
                   </span>
                 </div>
                 <div className="HostOrder_info_div">
-                  <h4>Disponibilità</h4>
+                  <h4>Availability</h4>
                   <span>
                     <h4>2/{space.spots}</h4>
                   </span>
                 </div>
                 <div className="HostOrder_info_div">
-                  <h4>Quantità</h4>
+                  <h4>Quantity</h4>
                   <span className="quantity_span">
                     <select
                       className="quantity"
@@ -73,7 +73,7 @@ const HostOrder: React.FC<{
             </Box>
           </Box>
 
-          <hr className="separator" />
+          {/*<hr className="separator" />*/}
         </React.Fragment>
       ))}
     </Box>

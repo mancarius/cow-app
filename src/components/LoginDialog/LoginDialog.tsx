@@ -3,21 +3,22 @@ import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
-import AlternateEmailOutlinedIcon from "@mui/icons-material/AlternateEmailOutlined";
-import Paper from "@mui/material/Paper";
-import InputBase from "@mui/material/InputBase";
+// import Container from "@mui/material/Container";
+// import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+// import AlternateEmailOutlinedIcon from "@mui/icons-material/AlternateEmailOutlined";
+// import Paper from "@mui/material/Paper";
+// import InputBase from "@mui/material/InputBase";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
-import { Divider } from "@mui/material";
-import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
+// import { Divider } from "@mui/material";
+// import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import IconButton from "@mui/material/IconButton";
 import SvgIcon from "@material-ui/core/SvgIcon";
+import cowIcon from "../../assets/logo-small.png";
 import { RootState, useAppDispatch } from '../../store';
 import { AuthProvider } from "../../@types/AuthProvider.d";
 import { customerLogin, dismissAuth } from "../../store/features/customer/slice";
@@ -44,10 +45,10 @@ export default function SignIn() {
   }
 
   // Form
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-  };
+  // const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
+  //   const data = new FormData(event.currentTarget);
+  // };
 
   return (
     <Dialog
@@ -73,7 +74,7 @@ export default function SignIn() {
           </Grid>
           <Grid item xs={12} sm={6} sx={{ mt: 2 }}>
             <Typography variant="h6" mb={3} ml={2}>
-              Login or Sign up
+              Login 
             </Typography>
           </Grid>
         </Grid>
@@ -88,12 +89,12 @@ export default function SignIn() {
                 height: 25,
                 marginLeft: 1,
               }}
-              alt="Your logo."
-              src="../../../assets/logo-small.png"
+              alt="Cow Icon"
+              src={cowIcon}
             />
           </Typography>
         </Grid>
-        <Container
+        {/* <Container
           sx={{
             display: "flex",
             flexDirection: "column",
@@ -193,14 +194,14 @@ export default function SignIn() {
                 >
                   I'm in
                 </Button>
-              </Grid>
+              </Grid> 
 
               <Grid width={"100%"} sx={{ mt: 2 }}>
                 <Typography variant="subtitle2" mb={2} ml={2}>
                   <Divider>oppure</Divider>
                 </Typography>
               </Grid>
-            </Grid>
+            </Grid>*/}
             <Button
               type="submit"
               fullWidth
@@ -308,7 +309,7 @@ export default function SignIn() {
             >
               Login with Facebook
             </Button>
-            <Button
+            {/* <Button
               type="submit"
               fullWidth
               variant="contained"
@@ -337,9 +338,9 @@ export default function SignIn() {
               }}
             >
               Sign up with e-mail
-            </Button>
+            </Button> 
           </Box>
-        </Container>
+        </Container>*/}
       </DialogContent>
     </Dialog>
   );

@@ -18,7 +18,12 @@ import { AuthProvider } from "../@types/AuthProvider.d";
 import { Booking } from "../@types/Booking.d";
 import { Customer } from "../@types/Customer.d";
 import { DbCollections } from "../@types/DbCollections.d";
-import { db, logout, signInWithFacebook, signInWithGoogle } from "../configs/firebase";
+import {
+  db,
+  logout,
+  signInWithFacebook,
+  signInWithGoogle,
+} from "../configs/firebase";
 
 export default class CustomerService {
   /**
@@ -48,8 +53,17 @@ export default class CustomerService {
    */
   public static async addBooking(booking: Booking.Info): Promise<string> {
     try {
+      const { host, space } = booking;
+      const hostsRef = collection(db, DbCollections.hosts);
+      const spacesRef = collection(db, DbCollections.spaces);
+      const hostRef = doc(hostsRef, host as string);
+      const spaceRef = doc(spacesRef, space as string);
       const bookingsRef = collection(db, DbCollections.bookings);
-      const bookingRef = await addDoc(bookingsRef, booking);
+      const bookingRef = await addDoc(bookingsRef, {
+        ...booking,
+        host: hostRef,
+        space: spaceRef,
+      });
       return bookingRef.id;
     } catch (error) {
       throw error;

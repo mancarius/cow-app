@@ -10,8 +10,11 @@ import { Routes, Route } from "react-router-dom";
 import Footer from "./components/Footer/Footer";
 import NavBar from "./components/NavBar/NavBar";
 import LoginDialog from "./components/LoginDialog/LoginDialog";
+import HereApi from "./service/here-api.service";
 
 function App() {
+  HereApi.apiKey = import.meta.env.VITE_APP_HERE_API_KEY;
+  
   return (
     <>
       <NavBar />

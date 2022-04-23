@@ -1,4 +1,4 @@
-import { ChangeEvent, useState, FormEvent } from "react";
+import { useState, FormEvent } from "react";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -11,16 +11,29 @@ import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
 import { useNavigate } from "react-router-dom";
 import { serialize } from "../../utils/serialize";
+import LocationSearchInput from "../LocationSearchInput/LocationSearchInput";
+import { Here } from "../../@types/Here";
+import DatePickerInput from "../DatePickerInput/DatePickerInput";
 
 export default function SignUp() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const [address, setAddress] = useState<Here.Item["address"]["city"]>("");
+  const [dateInterval, setDateInterval] = useState<(Date | null)[]>([
+    new Date(),
+    null,
+  ]);
+  const [timeInterval, setTimeInterval] = useState<(string | null)[]>([
+    new Date().toLocaleTimeString(),
+    null,
+  ]);
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const data: Record<string, string> = {};
-    formData.forEach((value, key) => {
-      typeof value === "string" && (data[key] = value);
-    });
+
+    const data: Record<string, string> = {
+      address,
+      dateInterval: dateInterval.map(date => date ? date.toLocaleDateString() : '').join('-'),
+    };
     navigate(`/results?${serialize(data)}`);
   };
 
@@ -31,7 +44,7 @@ export default function SignUp() {
         flexDirection: "column",
         alignItems: "center",
         borderRadius: "15px",
-        backgroundColor: "rgba( 241, 239, 239, 0.75)"
+        backgroundColor: "rgba( 241, 239, 239, 0.75)",
       }}
     >
       <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
@@ -43,8 +56,7 @@ export default function SignUp() {
             <Paper
               component="div"
               sx={{
-                paddingTop: "10px",
-                paddingBottom: "10px",
+                padding: "5px 20px 5px 5px",
                 display: "flex",
                 alignItems: "center",
                 width: "100%",
@@ -52,11 +64,11 @@ export default function SignUp() {
               }}
             >
               <SearchIcon sx={{ fontSize: 50, p: "10px", color: "#E5E5E5" }} />
-
-              <InputBase
-                sx={{ ml: 1, flex: 1 }}
+              <LocationSearchInput
                 placeholder="Search nearby..."
                 name="address"
+                address={address}
+                setAddress={setAddress}
               />
             </Paper>
           </Grid>
@@ -79,12 +91,7 @@ export default function SignUp() {
                 sx={{ fontSize: 40, p: "10px", color: "#E5E5E5" }}
                 aria-label="menu"
               />
-
-              <InputBase
-                sx={{ ml: 1, flex: 1 }}
-                placeholder="es. Today"
-                name="dateInterval"
-              />
+              <DatePickerInput name="dateInterval" value={dateInterval} setDateInterval={setDateInterval} />
             </Paper>
           </Grid>
           <Grid item xs={12} sm={6} sx={{ mt: 4 }}>

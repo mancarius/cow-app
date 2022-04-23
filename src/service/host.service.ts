@@ -72,7 +72,7 @@ export default class HostService implements Host.Info {
       const spacesRef = collection(db, "spaces");
       const bookingsRef = collection(db, "bookings");
 
-      const hostsQueryClauses = [where("address.city", "==", address)];
+      const hostsQueryClauses = [where("address.city", "==", address.toLowerCase())];
 
       tags &&
         tags.forEach((tag) =>
