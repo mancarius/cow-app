@@ -1,6 +1,6 @@
 import * as React from "react";
 import './MobileFilter.css';
-import { Box, Button, Stack } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const MobileFilter: React.FC = () => {

@@ -13,18 +13,27 @@ import { useNavigate } from "react-router-dom";
 import { serialize } from "../../utils/serialize";
 import LocationSearchInput from "../LocationSearchInput/LocationSearchInput";
 import { Here } from "../../@types/Here";
+import DatePickerInput from "../DatePickerInput/DatePickerInput";
 
 export default function SignUp() {
-  const navigate = useNavigate()
-  const [address, setAddress] = useState<Here.Item["address"]["city"]>('');
+  const navigate = useNavigate();
+  const [address, setAddress] = useState<Here.Item["address"]["city"]>("");
+  const [dateInterval, setDateInterval] = useState<(Date | null)[]>([
+    new Date(),
+    null,
+  ]);
+  const [timeInterval, setTimeInterval] = useState<(string | null)[]>([
+    new Date().toLocaleTimeString(),
+    null,
+  ]);
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const data: Record<string, string> = {};
-    formData.forEach((value, key) => {
-      typeof value === "string" && (data[key] = value);
-    });
-    data.address = address;
+
+    const data: Record<string, string> = {
+      address,
+      dateInterval: dateInterval.map(date => date ? date.toLocaleDateString() : '').join('-'),
+    };
     navigate(`/results?${serialize(data)}`);
   };
 
@@ -61,11 +70,6 @@ export default function SignUp() {
                 address={address}
                 setAddress={setAddress}
               />
-              {/*<InputBase
-                sx={{ ml: 1, flex: 1 }}
-                placeholder="Search nearby..."
-                name="address"
-            />*/}
             </Paper>
           </Grid>
           <Grid item xs={12} sm={6} sx={{ mt: 4 }}>
@@ -87,12 +91,7 @@ export default function SignUp() {
                 sx={{ fontSize: 40, p: "10px", color: "#E5E5E5" }}
                 aria-label="menu"
               />
-
-              <InputBase
-                sx={{ ml: 1, flex: 1 }}
-                placeholder="es. Today"
-                name="dateInterval"
-              />
+              <DatePickerInput name="dateInterval" value={dateInterval} setDateInterval={setDateInterval} />
             </Paper>
           </Grid>
           <Grid item xs={12} sm={6} sx={{ mt: 4 }}>

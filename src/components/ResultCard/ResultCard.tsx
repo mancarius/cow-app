@@ -40,7 +40,7 @@ const ResultCard: React.FC<{ host: Host.SearchResult }> = React.memo(({ host }) 
         <CardMedia
           component="img"
           className="myCardMedia"
-          image={host.images[0]}
+          image={'/images/host/'+host.id+'/'+host.images[0]}
           alt="unsplash image"
         ></CardMedia>
         <Stack className="myCardBox_content">

@@ -1,10 +1,5 @@
 import "./PrenotationSearch.css";
-import {
-  Box,
-  Stack,
-  Typography,
-  FormGroup,
-} from "@mui/material";
+import { Box, Stack, Typography, FormGroup } from "@mui/material";
 import { useSearchParams } from "react-router-dom";
 import React, { useState, useEffect, useCallback } from "react";
 import _ from "lodash";
@@ -13,15 +8,18 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import LocationSearchInput from "../LocationSearchInput/LocationSearchInput";
 import FilterTagList from "../FilterTagList/FilterTagList";
+import DatePickerInput from "../DatePickerInput/DatePickerInput";
+import { isValidDate } from "../../utils/date-utils";
 
 const PrenotationSearch = React.memo(() => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [address, setAddress] = useState<string>(
     searchParams.get("address") || ""
   );
-  const [dateInterval, setDateInterval] = useState<string>(
-    searchParams.get("dateInterval") || ""
-  );
+  const [dateInterval, setDateInterval] = useState<(Date | null)[]>([
+    null,
+    null,
+  ]);
   const [timeInterval, setTimeInterval] = useState<string>(
     searchParams.get("timeInterval") || ""
   );
@@ -30,7 +28,14 @@ const PrenotationSearch = React.memo(() => {
   const debouncedFilters = useCallback(
     _.debounce(() => {
       console.log({ address, dateInterval, timeInterval, tags });
-      setSearchParams({ address, dateInterval, timeInterval, tags });
+      setSearchParams({
+        address,
+        dateInterval: dateInterval
+          .map((date) => (date ? date.toLocaleDateString() : ""))
+          .join("-"),
+        timeInterval,
+        tags,
+      });
     }, 1000),
     [address, dateInterval, timeInterval, tags]
   );
@@ -38,6 +43,15 @@ const PrenotationSearch = React.memo(() => {
   useEffect(() => {
     debouncedFilters();
   }, [address, dateInterval, timeInterval, tags]);
+
+  useEffect(() => {
+    const dateInterval = searchParams.get("dateInterval")?.split("-");
+    console.log({dateInterval})
+    dateInterval && dateInterval.length &&
+      setDateInterval(
+        dateInterval.map((date) => (isValidDate(date) ? new Date(date) : null))
+      );
+  }, []);
 
   return (
     <Stack className="prenotationSearch">
@@ -52,10 +66,9 @@ const PrenotationSearch = React.memo(() => {
         <Stack>
           <Typography variant="body1"> When? </Typography>
           <span className="box">
-            <input
-              type="text"
+            <DatePickerInput
               value={dateInterval}
-              onChange={(e) => setDateInterval(e.target.value)}
+              setDateInterval={setDateInterval}
             />
             <CalendarMonthIcon></CalendarMonthIcon>
           </span>

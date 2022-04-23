@@ -62,3 +62,6 @@ export function StringToDateTime(date: string, time: string) {
     throw error;
   }
 }
+
+
+export const isValidDate = (value: any) => !isNaN(Date.parse(value));
