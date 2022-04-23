@@ -5,7 +5,8 @@
 }
 
 .HostDetails_title{
-    margin-top: 50px;
+    margin-top: 1rem;
+    text-transform: capitalize;
 }
 
 .HostDetails_back svg{

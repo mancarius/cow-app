@@ -5,10 +5,15 @@ import "./HostDetails.css";
 import HostCarousel from "../../components/HostCarousel/HostCarousel";
 import HostOrder from "../../components/HostOrder/HostOrder";
 import HostCarouselFooter from "../../components/HostCarouselFooter/HostCarouselFooter";
-import HostDate from "../../components/HostDate/HostDate";
 import HostCart from "../../components/HostCart/HostCart";
 import HostContact from "../../components/HostContact/HostContact";
-import { Box, Button, CircularProgress, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  CircularProgress,
+  Stack,
+  Typography,
+} from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Host } from "../../@types/Host";
 
@@ -21,7 +26,7 @@ const HostDetails: React.FC = memo(() => {
     currency: "",
     type: "",
     spots: 0,
-    id: ''
+    id: "",
   });
   const { id } = useParams();
 
@@ -46,9 +51,9 @@ const HostDetails: React.FC = memo(() => {
             <Button className="HostDetails_back" onClick={() => history.back()}>
               <ArrowBackIcon />
             </Button>
-            <Typography variant="h3">{host.name}</Typography>
+            <Typography variant="h4">{host.name}</Typography>
           </Stack>
-          <HostCarousel images={host.images} />
+          <HostCarousel hostId={id as string} images={host.images} />
           <HostCarouselFooter
             tags={host.tags}
             address={host.address}

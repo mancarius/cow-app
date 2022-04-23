@@ -9,6 +9,11 @@
 
 .HostCarouselFooter_address{
     font-size: 20px;
+    text-transform: capitalize;
+}
+
+.HostCarouselFooter_address_state {
+    text-transform: uppercase;
 }
 
 .HostCarouselFooter_features{
