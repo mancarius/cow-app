@@ -8,12 +8,12 @@ import SearchIcon from "@mui/icons-material/Search";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import Paper from "@mui/material/Paper";
-import InputBase from "@mui/material/InputBase";
 import { useNavigate } from "react-router-dom";
 import { serialize } from "../../utils/serialize";
-import LocationSearchInput from "../LocationSearchInput/LocationSearchInput";
 import { Here } from "../../@types/Here";
+import LocationSearchInput from "../LocationSearchInput/LocationSearchInput";
 import DatePickerInput from "../DatePickerInput/DatePickerInput";
+import TimePickerInput from "../TimePickerInput/TimePickerInput";
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -32,7 +32,9 @@ export default function SignUp() {
 
     const data: Record<string, string> = {
       address,
-      dateInterval: dateInterval.map(date => date ? date.toLocaleDateString() : '').join('-'),
+      dateInterval: dateInterval
+        .map((date) => (date ? date.toLocaleDateString() : ""))
+        .join("-"),
     };
     navigate(`/results?${serialize(data)}`);
   };
@@ -49,7 +51,7 @@ export default function SignUp() {
     >
       <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
         <Grid container spacing={2}>
-          <Grid item xs={12} sx={{ mt: 5 }}>
+          <Grid item xs={12} sx={{ mt: 1 }}>
             <Typography variant="h6" mb={1} ml={2}>
               Where?
             </Typography>
@@ -72,15 +74,14 @@ export default function SignUp() {
               />
             </Paper>
           </Grid>
-          <Grid item xs={12} sm={6} sx={{ mt: 4 }}>
+          <Grid item xs={12} sx={{ mt: 2 }}>
             <Typography variant="h6" mb={1} ml={2}>
               When?
             </Typography>
             <Paper
               component="div"
               sx={{
-                paddingTop: "10px",
-                paddingBottom: "10px",
+                padding: "10px 20px 10px 5px",
                 display: "flex",
                 alignItems: "center",
                 width: "100%",
@@ -91,33 +92,30 @@ export default function SignUp() {
                 sx={{ fontSize: 40, p: "10px", color: "#E5E5E5" }}
                 aria-label="menu"
               />
-              <DatePickerInput name="dateInterval" value={dateInterval} setDateInterval={setDateInterval} />
+              <DatePickerInput
+                name="dateInterval"
+                value={dateInterval}
+                setDateInterval={setDateInterval}
+              />
             </Paper>
           </Grid>
-          <Grid item xs={12} sm={6} sx={{ mt: 4 }}>
+          <Grid item xs={12} sx={{ mt: 2 }}>
             <Typography variant="h6" mb={1} ml={2}>
               What time?
             </Typography>
             <Paper
               component="div"
               sx={{
-                paddingTop: "10px",
-                paddingBottom: "10px",
+                padding: "10px 20px 10px 15px",
                 display: "flex",
                 alignItems: "center",
                 width: "100%",
                 borderRadius: "25px",
               }}
             >
-              <AccessTimeIcon
-                sx={{ fontSize: 40, p: "10px", color: "#E5E5E5" }}
-                aria-label="menu"
-              />
-
-              <InputBase
-                sx={{ ml: 1, flex: 1 }}
-                placeholder="15:30 - 16:30"
-                name="timeInterval"
+              <TimePickerInput
+                value={timeInterval}
+                setTimeInterval={setTimeInterval}
               />
             </Paper>
           </Grid>
@@ -128,8 +126,8 @@ export default function SignUp() {
           variant="contained"
           size="large"
           sx={{
-            mt: 8,
-            mb: 8,
+            mt: 6,
+            mb: 5,
             bgcolor: "#FFC533",
             color: "black",
             borderRadius: "50px",

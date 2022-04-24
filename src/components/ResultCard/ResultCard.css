@@ -23,10 +23,12 @@
     font-weight: bold;
     margin-bottom: 0;
     font-size: 20px;
+    text-transform: capitalize;
 }
 
 .myCard_content h6{
     font-size: 13px;
+    text-transform: capitalize;
 }
 
 .mc_actions{

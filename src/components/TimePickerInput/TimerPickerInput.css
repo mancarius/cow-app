@@ -1,0 +1,9 @@
+.time-range-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 1rem;
+  width: 100%;
+  color: inherit;
+  font-size: .9rem;
+}

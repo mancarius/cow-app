@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment, useState } from "react";
+import React, { useEffect, Fragment, useState, Suspense } from "react";
 import "./SearchResults.css";
 import PrenotationSearch from "../../components/PrenotationSearch/PrenotationSearch";
 import ResultCard from "../../components/ResultCard/ResultCard";
@@ -76,37 +76,39 @@ const SearchResults: React.FC = React.memo(() => {
             </Typography>
             <PrenotationSearch />
           </div>
-          {status === "failed" && (
-            <Typography>
-              No host found with this filters. Please try with different
-              filters.
-            </Typography>
-          )}
-          {status === "loading" && (
-            <Box
-              sx={{
-                height: "50vh",
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <CircularProgress />
-            </Box>
-          )}
-          {status === "idle" && (
-            <Box className="myCardContainer">
-              {hosts.length ? (
-                hosts.map((host) => <ResultCard host={host} key={host.id} />)
-              ) : (
-                <Typography>
-                  No host found with this filters. Please try with different
-                  filters.
-                </Typography>
-              )}
-            </Box>
-          )}
+          <Suspense fallback={<CircularProgress />}>
+            {status === "failed" && (
+              <Typography>
+                No host found with this filters. Please try with different
+                filters.
+              </Typography>
+            )}
+            {status === "loading" && (
+              <Box
+                sx={{
+                  height: "50vh",
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <CircularProgress />
+              </Box>
+            )}
+            {status === "idle" && (
+              <Box className="myCardContainer">
+                {hosts.length ? (
+                  hosts.map((host) => <ResultCard host={host} key={host.id} />)
+                ) : (
+                  <Typography>
+                    No host found with this filters. Please try with different
+                    filters.
+                  </Typography>
+                )}
+              </Box>
+            )}
+          </Suspense>
         </Box>
       </Box>
     </Fragment>

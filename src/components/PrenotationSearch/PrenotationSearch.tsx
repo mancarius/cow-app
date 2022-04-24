@@ -10,18 +10,34 @@ import LocationSearchInput from "../LocationSearchInput/LocationSearchInput";
 import FilterTagList from "../FilterTagList/FilterTagList";
 import DatePickerInput from "../DatePickerInput/DatePickerInput";
 import { isValidDate } from "../../utils/date-utils";
+import TimePickerInput from "../TimePickerInput/TimePickerInput";
+
+const dateIntervalStringToArray = (date: string | null) => {
+  const dateInterval = date?.split("-");
+  if (dateInterval && dateInterval.length)
+    return dateInterval.map((date) =>
+      isValidDate(date) ? new Date(date) : null
+    );
+  else return [null, null];
+};
+
+const timeIntervalStringToArray = (time: string | null) => {
+  const timeInterval = time?.split("-");
+  if (timeInterval && timeInterval.length)
+    return timeInterval.map((t) => (isValidDate(t) ? t : null));
+  else return [null, null];
+};
 
 const PrenotationSearch = React.memo(() => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [address, setAddress] = useState<string>(
     searchParams.get("address") || ""
   );
-  const [dateInterval, setDateInterval] = useState<(Date | null)[]>([
-    null,
-    null,
-  ]);
-  const [timeInterval, setTimeInterval] = useState<string>(
-    searchParams.get("timeInterval") || ""
+  const [dateInterval, setDateInterval] = useState<(Date | null)[]>(
+    dateIntervalStringToArray(searchParams.get("dateInterval") || null)
+  );
+  const [timeInterval, setTimeInterval] = useState<(string | null)[]>(
+    timeIntervalStringToArray(searchParams.get("timeInterval") || null)
   );
   const [tags, setTags] = useState<string[]>(searchParams.getAll("tags"));
 
@@ -33,7 +49,9 @@ const PrenotationSearch = React.memo(() => {
         dateInterval: dateInterval
           .map((date) => (date ? date.toLocaleDateString() : ""))
           .join("-"),
-        timeInterval,
+        timeInterval: timeInterval
+          .map((time) => (time ? time : ""))
+          .join("-"),
         tags,
       });
     }, 1000),
@@ -43,15 +61,6 @@ const PrenotationSearch = React.memo(() => {
   useEffect(() => {
     debouncedFilters();
   }, [address, dateInterval, timeInterval, tags]);
-
-  useEffect(() => {
-    const dateInterval = searchParams.get("dateInterval")?.split("-");
-    console.log({dateInterval})
-    dateInterval && dateInterval.length &&
-      setDateInterval(
-        dateInterval.map((date) => (isValidDate(date) ? new Date(date) : null))
-      );
-  }, []);
 
   return (
     <Stack className="prenotationSearch">
@@ -76,12 +85,10 @@ const PrenotationSearch = React.memo(() => {
         <Stack>
           <Typography variant="body1"> What time? </Typography>
           <span className="box">
-            <input
-              type="text"
+            <TimePickerInput
               value={timeInterval}
-              onChange={(e) => setTimeInterval(e.target.value)}
+              setTimeInterval={setTimeInterval}
             />
-            <AccessTimeIcon></AccessTimeIcon>
           </span>
         </Stack>
       </Box>

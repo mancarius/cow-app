@@ -42,7 +42,9 @@ const HostOrder: React.FC<{
                   <span>
                     <h3>
                       {space.price}
-                      <small>{space.currency}</small>
+                      <small>
+                        {space.currency}/{space.rateType.charAt(0)}
+                      </small>
                     </h3>
                   </span>
                 </div>

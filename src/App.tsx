@@ -14,19 +14,17 @@ import HereApi from "./service/here-api.service";
 
 function App() {
   HereApi.apiKey = import.meta.env.VITE_APP_HERE_API_KEY;
-  
+
   return (
     <>
       <NavBar />
       <LoginDialog />
-      <Suspense fallback={null}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/results" element={<SearchResults />} />
-          <Route path="host-details/:id" element={<HostDetails />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Suspense>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/results" element={<SearchResults />} />
+        <Route path="host-details/:id" element={<HostDetails />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
       <Footer></Footer>
     </>
   );

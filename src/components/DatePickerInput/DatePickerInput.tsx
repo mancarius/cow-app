@@ -22,6 +22,8 @@ const DatePickerInput: React.FC<DatePickerInputProps> = React.memo((props) => {
     setEndDate(end);
   };
 
+  console.log({value});
+
   useEffect(() => {
     setDateInterval([startDate, endDate]);
   }, [startDate, endDate])
