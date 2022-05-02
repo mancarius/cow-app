@@ -40,7 +40,7 @@ export default function Hero() {
               <Grid
                 item
                 xs={12}
-                sm={4}
+                sm={12}
                 md={6}
                 sx={{
                   textShadow:
@@ -67,7 +67,7 @@ export default function Hero() {
                   Are you in?
                 </Typography>
               </Grid>
-              <Grid item xs={12} sm={4} md={5}>
+              <Grid item xs={12} sm={12} md={5}>
                 <Form />
               </Grid>
             </Grid>

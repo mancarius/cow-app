@@ -53,133 +53,136 @@ function FeatureContent() {
         </Typography>
       </Container>
       {/* End Title */}
-      <Container maxWidth="xl" sx={{ pb: 6 }}>
+      <Container maxWidth="md" sx={{ pb: 6 }}>
         <Grid container spacing={12}>
-
-            <Grid
-              item
-              xs={12}
-              sm={6}
-              md={6}
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            md={6}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <Box
+              component="img"
               sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
+                height: 233,
+                maxHeight: { xs: 233, md: 167 },
               }}
+              alt="How it works for."
+              src={howItWorksFor_image}
+            />
+            <Typography
+              mt={4}
+              component="h5"
+              variant="h5"
+              align="left"
+              color="text.primary"
+              gutterBottom
             >
-              <Box
-                component="img"
-                sx={{
-                  height: 233,
-                  maxHeight: { xs: 233, md: 167 },
-                }}
-                alt="How it works for."
-                src={howItWorksFor_image}
-              />
-              <Typography
-                mt={5}
-                component="h5"
-                variant="h5"
-                align="center"
-                color="text.primary"
-                gutterBottom
-              >
-                If you are a customer:
-              </Typography>
-              <Typography
-                mt={5}
-                component="h5"
-                variant="h5"
-                align="center"
-                color="text.primary"
-                gutterBottom
-              >
-                1. Register with Facebook, Google or e-mail
-              </Typography>
-              <Typography
-                mt={5}
-                component="h5"
-                variant="h5"
-                align="center"
-                color="text.primary"
-                gutterBottom
-              >
-                2. Go to the booking page and select your preferred day and time
-              </Typography>
-              <Typography
-                mt={5}
-                component="h5"
-                variant="h5"
-                align="center"
-                color="text.primary"
-                gutterBottom
-              >
-                3. Choose from the available options and enjoy your stay!
-              </Typography>
-            </Grid>
+              If you are a customer:
+            </Typography>
+            <Typography
+              mt={3}
+              component="p"
+              variant="body1"
+              align="left"
+              color="text.primary"
+              gutterBottom
+            >
+              <strong>1</strong>. Sign-in quickly with your Facebook or Google
+              account
+            </Typography>
+            <Typography
+              mt={3}
+              component="p"
+              variant="body1"
+              align="left"
+              color="text.primary"
+              gutterBottom
+            >
+              <strong>2</strong>. Select your preferred day and time
+            </Typography>
+            <Typography
+              mt={3}
+              component="p"
+              variant="body1"
+              align="left"
+              color="text.primary"
+              gutterBottom
+            >
+              <strong>3</strong>. Choose from the available options and enjoy
+              your stay!
+            </Typography>
+          </Grid>
 
-            <Grid
-              item
-              xs={12}
-              sm={6}
-              md={6}
+          <Grid
+            item
+            xs={12}
+            sm={6}
+            md={6}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <Box
+              component="img"
               sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
+                height: 233,
+                maxHeight: { xs: 233, md: 167 },
               }}
+              alt="How it works for."
+              src={howItWorksHost_image}
+            />
+            <Typography
+              mt={4}
+              component="h5"
+              variant="h5"
+              align="left"
+              color="text.primary"
+              gutterBottom
             >
-              <Box
-                component="img"
-                sx={{
-                  height: 233,
-                  maxHeight: { xs: 233, md: 167 },
-                }}
-                alt="How it works for."
-                src={howItWorksHost_image}
-              />
-              <Typography
-                mt={5}
-                component="h5"
-                variant="h5"
-                align="center"
-                color="text.primary"
-                gutterBottom
-              >
-                If you want to list your property:
-              </Typography>
-              <Typography
-                mt={5}
-                component="h5"
-                variant="h5"
-                align="center"
-                color="text.primary"
-                gutterBottom
-              >
-                1. Register with your company e-mail, Google or e-mail
-              </Typography>
-              <Typography
-                mt={5}
-                component="h5"
-                variant="h5"
-                align="center"
-                color="text.primary"
-                gutterBottom
-              >
-                2. Enter the information about your coworking space
-              </Typography>
-              <Typography
-                mt={5}
-                component="h5"
-                variant="h5"
-                align="center"
-                color="text.primary"
-                gutterBottom
-              >
-                3. Get ready to offer an unforgettable stay to your guests!
-              </Typography>
-            </Grid>
-          
+              If you want to list your property:
+            </Typography>
+            <Typography
+              mt={3}
+              component="p"
+              variant="body1"
+              align="left"
+              color="text.primary"
+              gutterBottom
+            >
+              <strong>1</strong>. Sign-in quickly with your Facebook or Google
+              account
+            </Typography>
+            <Typography
+              mt={3}
+              component="p"
+              variant="body1"
+              align="left"
+              color="text.primary"
+              gutterBottom
+            >
+              <strong>2</strong>. Enter the information about your coworking
+              space
+            </Typography>
+            <Typography
+              mt={3}
+              component="p"
+              variant="body1"
+              align="left"
+              color="text.primary"
+              gutterBottom
+            >
+              <strong>3</strong>. Get ready to offer an unforgettable stay to
+              your guests!
+            </Typography>
+          </Grid>
         </Grid>
       </Container>
     </React.Fragment>
